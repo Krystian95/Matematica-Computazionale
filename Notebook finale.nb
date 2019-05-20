@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     52861,       1042]
-NotebookOptionsPosition[     52336,       1025]
-NotebookOutlinePosition[     52679,       1040]
-CellTagsIndexPosition[     52636,       1037]
+NotebookDataLength[     52296,       1024]
+NotebookOptionsPosition[     51772,       1007]
+NotebookOutlinePosition[     52115,       1022]
+CellTagsIndexPosition[     52072,       1019]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -41,279 +41,267 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"selectedRowArbitroGlobal", " ", "=", " ", "0"}], ";"}], 
    "\[IndentingNewLine]", "\[IndentingNewLine]", 
-   RowBox[{"(*", 
-    RowBox[{
-     RowBox[{"fGetProbability", "[", 
+   RowBox[{
+    RowBox[{"fGetProbability", "[", 
+     RowBox[{
+     "cityArbitro_", ",", "birthDateArbitro_", ",", " ", "acceptedArbitro_", 
+      ",", " ", "refusedArbitro_", ",", " ", "dayOfWeekGara_", ",", " ", 
+      "timeGara_", ",", "  ", "cityGara_"}], "]"}], " ", ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", "TEST", " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"dayOfWeekGara", " ", "=", " ", "\"\<Lun\>\""}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"cityArbitro", " ", "=", " ", "\"\<TERRE DEL RENO\>\""}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"cityGara", " ", "=", " ", "\"\<Ferrara\>\""}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"birthDateArbitro", " ", "=", " ", "\"\<02/07/1995\>\""}], 
+        ";"}], " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{
-      "cityArbitro_", ",", "birthDateArbitro_", ",", " ", "acceptedArbitro_", 
-       ",", " ", "refusedArbitro_", ",", " ", "dayOfWeekGara_", ",", " ", 
-       "timeGara_", ",", "  ", "cityGara_"}], "]"}], " ", ":=", " ", 
-     RowBox[{"Module", "[", 
-      RowBox[{
-       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"(*", " ", "TEST", " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"probability", " ", "=", " ", "0"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"1", " ", "-", " ", "STORICO"}], " ", "*)"}], 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"probbilityPast", " ", "=", " ", 
+        RowBox[{"acceptedArbitro", " ", "/", 
+         RowBox[{"(", 
+          RowBox[{"acceptedArbitro", "+", "refusedArbitro"}], ")"}]}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"2", " ", "-", " ", "DISTANZA"}], " ", "*)"}], 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"probabilityDistance", " ", "=", " ", "1"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{
-         RowBox[{"dayOfWeekGara", " ", "=", " ", "\"\<Lun\>\""}], ";", 
+        "Replace", " ", "particolare", " ", "perch\[EGrave]", " ", 
+         "\"\<Terre Del Reno\>\"", " ", "non", " ", "\[EGrave]", " ", 
+         "riconosciuto", " ", "come", " ", "citt\[AGrave]"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"cityArbitro", " ", "=", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"cityArbitro", "\[Equal]", "\"\<TERRE DEL RENO\>\""}], 
+            ",", "\"\<Mirabello\>\"", ",", "cityArbitro"}], "]"}]}], ";", 
          "\[IndentingNewLine]", 
-         RowBox[{"cityArbitro", " ", "=", " ", "\"\<TERRE DEL RENO\>\""}], 
-         ";", "\[IndentingNewLine]", 
-         RowBox[{"cityGara", " ", "=", " ", "\"\<Ferrara\>\""}], ";", 
+         RowBox[{"cityGara", " ", "=", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"cityGara", "\[Equal]", "\"\<TERRE DEL RENO\>\""}], ",", 
+            "\"\<Mirabello\>\"", ",", "cityGara"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+           RowBox[{
+           "Trasforma", " ", "le", " ", "stringhe", " ", "da", " ", 
+            "\"\<TERRE DEL RENO\>\"", " ", "a", " ", "\"\<TerreDelReno\>\""}],
+            ",", " ", 
+           RowBox[{"rendendole", " ", "utilizzabili", " ", "per", " ", 
+            RowBox[{"TravelDistance", "[", "]"}]}]}], " ", "*)"}], 
          "\[IndentingNewLine]", 
-         RowBox[{"birthDateArbitro", " ", "=", " ", "\"\<02/07/1995\>\""}], 
-         ";"}], " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"probability", " ", "=", " ", "0"}], ";", 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"(*", " ", 
-         RowBox[{"1", " ", "-", " ", "STORICO"}], " ", "*)"}], 
-        "\[IndentingNewLine]", 
-        RowBox[{"probbilityPast", "=", "1"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"probbilityPast", " ", "=", " ", 
-           RowBox[{"acceptedArbitro", " ", "/", 
-            RowBox[{"(", 
-             RowBox[{"acceptedArbitro", "+", "refusedArbitro"}], ")"}]}]}], 
-          ";"}], "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"(*", " ", 
-         RowBox[{"2", " ", "-", " ", "DISTANZA"}], " ", "*)"}], 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"probabilityDistance", " ", "=", " ", "1"}], ";", 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"(*", " ", 
-         RowBox[{
-         "Replace", " ", "particolare", " ", "perch\[EGrave]", " ", 
-          "\"\<Terre Del Reno\>\"", " ", "non", " ", "\[EGrave]", " ", 
-          "riconosciuto", " ", "come", " ", "citt\[AGrave]"}], " ", "*)"}], 
-        "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"cityArbitro", " ", "=", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"cityArbitro", "\[Equal]", "\"\<TERRE DEL RENO\>\""}], 
-             ",", "\"\<Mirabello\>\"", ",", "cityArbitro"}], "]"}]}], ";", 
-          "\[IndentingNewLine]", 
-          RowBox[{"cityGara", " ", "=", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"cityGara", "\[Equal]", "\"\<TERRE DEL RENO\>\""}], ",", 
-             "\"\<Mirabello\>\"", ",", "cityGara"}], "]"}]}], ";", 
-          "\[IndentingNewLine]", "\[IndentingNewLine]", 
-          RowBox[{"(*", " ", 
+         RowBox[{"cityArbitro", " ", "=", " ", 
+          RowBox[{"StringDelete", "[", 
            RowBox[{
-            RowBox[{
-            "Trasforma", " ", "le", " ", "stringhe", " ", "da", " ", 
-             "\"\<TERRE DEL RENO\>\"", " ", "a", " ", 
-             "\"\<TerreDelReno\>\""}], ",", " ", 
-            RowBox[{"rendendole", " ", "utilizzabili", " ", "per", " ", 
-             RowBox[{"TravelDistance", "[", "]"}]}]}], " ", "*)"}], 
-          "\[IndentingNewLine]", 
-          RowBox[{"cityArbitro", " ", "=", " ", 
-           RowBox[{"StringDelete", "[", 
-            RowBox[{
-             RowBox[{"StringReplace", "[", 
-              RowBox[{
-               RowBox[{"ToLowerCase", "[", "cityArbitro", "]"}], ",", 
-               RowBox[{
-                RowBox[{"WordBoundary", "~~", "x_"}], "\[RuleDelayed]", 
-                RowBox[{"ToUpperCase", "[", "x", "]"}]}]}], "]"}], ",", 
-             "\"\< \>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
-          RowBox[{"cityGara", " ", "=", " ", 
-           RowBox[{"StringDelete", "[", 
-            RowBox[{
-             RowBox[{"StringReplace", "[", 
-              RowBox[{
-               RowBox[{"ToLowerCase", "[", "cityGara", "]"}], ",", 
-               RowBox[{
-                RowBox[{"WordBoundary", "~~", "x_"}], "\[RuleDelayed]", 
-                RowBox[{"ToUpperCase", "[", "x", "]"}]}]}], "]"}], ",", 
-             "\"\< \>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
-          "\[IndentingNewLine]", 
-          RowBox[{"(*", " ", 
-           RowBox[{
-           "Calcola", " ", "la", " ", "distanza", " ", "tra", " ", "la", " ", 
-            "citt\[AGrave]", " ", 
-            RowBox[{"dell", "'"}], "arbitro", " ", "e", " ", "la", " ", 
-            "citt\[AGrave]", " ", "della", " ", "gara"}], " ", "*)"}], 
-          "\[IndentingNewLine]", 
-          RowBox[{"distanceKm", " ", "=", " ", 
-           RowBox[{"TravelDistance", "[", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{
-               RowBox[{"Entity", "[", 
-                RowBox[{"\"\<City\>\"", ",", 
-                 RowBox[{"{", 
-                  RowBox[{
-                  "cityArbitro", ",", "\"\<EmiliaRomagna\>\"", ",", 
-                   "\"\<Italy\>\""}], "}"}]}], "]"}], ",", 
-               RowBox[{"Entity", "[", 
-                RowBox[{"\"\<City\>\"", ",", 
-                 RowBox[{"{", 
-                  RowBox[{
-                  "cityGara", ",", "\"\<EmiliaRomagna\>\"", ",", 
-                   "\"\<Italy\>\""}], "}"}]}], "]"}]}], "}"}], ",", 
-             RowBox[{"TravelMethod", "\[Rule]", "\"\<Driving\>\""}]}], 
-            "]"}]}], ";", "\[IndentingNewLine]", 
-          RowBox[{"distance", " ", "=", 
-           RowBox[{"QuantityMagnitude", "[", 
-            RowBox[{"IntegerPart", "[", "distanceKm", "]"}], "]"}]}], ";", 
-          "\[IndentingNewLine]", "\[IndentingNewLine]", 
-          RowBox[{"(*", " ", 
-           RowBox[{
-           "Diminuisce", " ", "la", " ", "probabilit\[AGrave]", " ", "al", 
-            " ", "crescere", " ", "della", " ", "distanza"}], " ", "*)"}], 
-          "\[IndentingNewLine]", " ", 
-          RowBox[{"probabilityDistance", " ", "-=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"Between", "[", 
-              RowBox[{"distance", ",", " ", 
-               RowBox[{"{", 
-                RowBox[{"0", ",", " ", "10"}], "}"}]}], "]"}], ",", " ", 
-             "0.05", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
-          " ", 
-          RowBox[{"probabilityDistance", " ", "-=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"Between", "[", 
-              RowBox[{"distance", ",", " ", 
-               RowBox[{"{", 
-                RowBox[{"11", ",", " ", "20"}], "}"}]}], "]"}], ",", " ", 
-             "0.10", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
-          " ", 
-          RowBox[{"probabilityDistance", " ", "-=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"Between", "[", 
-              RowBox[{"distance", ",", " ", 
-               RowBox[{"{", 
-                RowBox[{"21", ",", " ", "40"}], "}"}]}], "]"}], ",", " ", 
-             "0.15", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
-          " ", 
-          RowBox[{"probabilityDistance", " ", "-=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"Between", "[", 
-              RowBox[{"distance", ",", " ", 
-               RowBox[{"{", 
-                RowBox[{"41", ",", " ", "70"}], "}"}]}], "]"}], ",", " ", 
-             "0.20", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
-          " ", 
-          RowBox[{"probabilityDistance", " ", "-=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"Between", "[", 
-              RowBox[{"distance", ",", " ", 
-               RowBox[{"{", 
-                RowBox[{"71", ",", " ", "100"}], "}"}]}], "]"}], ",", " ", 
-             "0.25", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
-          " ", 
-          RowBox[{"probabilityDistance", " ", "-=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"Between", "[", 
-              RowBox[{"distance", ",", " ", 
-               RowBox[{"{", 
-                RowBox[{"101", ",", " ", "150"}], "}"}]}], "]"}], ",", " ", 
-             "0.30", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
-          " ", 
-          RowBox[{"probabilityDistance", " ", "-=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"Between", "[", 
-              RowBox[{"distance", ",", " ", 
-               RowBox[{"{", 
-                RowBox[{"151", ",", " ", "250"}], "}"}]}], "]"}], ",", " ", 
-             "0.35", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
-          " ", 
-          RowBox[{"probabilityDistance", " ", "-=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"Between", "[", 
-              RowBox[{"distance", ",", " ", 
-               RowBox[{"{", 
-                RowBox[{"251", ",", " ", "999"}], "}"}]}], "]"}], ",", " ", 
-             "0.40", ",", " ", "0"}], "]"}]}], ";"}], "*)"}], 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"(*", " ", 
-         RowBox[{"3", " ", "-", " ", 
-          RowBox[{"GIORNO", " ", "SETTIMANA", " ", "e", " ", "ORARIO"}]}], 
-         " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"probabilityDayOfWeek", " ", "=", " ", "1"}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"today", " ", "=", " ", 
-           RowBox[{"DateList", "[", "]"}]}], ";", "\[IndentingNewLine]", 
-          RowBox[{"birthDateArbitroSplitted", " ", "=", " ", 
-           RowBox[{"StringSplit", "[", 
-            RowBox[{"birthDateArbitro", ",", " ", "\"\</\>\""}], "]"}]}], ";",
-           "\[IndentingNewLine]", 
-          RowBox[{"ageArbitroDay", " ", "=", " ", 
-           RowBox[{"DateDifference", "[", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{
-               RowBox[{"birthDateArbitroSplitted", "[", 
-                RowBox[{"[", "3", "]"}], "]"}], ",", 
-               RowBox[{"birthDateArbitroSplitted", "[", 
-                RowBox[{"[", "2", "]"}], "]"}], ",", 
-               RowBox[{"birthDateArbitroSplitted", "[", 
-                RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", 
-             RowBox[{"{", 
-              RowBox[{
-               RowBox[{"today", "[", 
-                RowBox[{"[", "1", "]"}], "]"}], ",", 
-               RowBox[{"today", "[", 
-                RowBox[{"[", "2", "]"}], "]"}], ",", 
-               RowBox[{"today", "[", 
-                RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}], "]"}]}], ";", 
-          "\[IndentingNewLine]", 
-          RowBox[{"ageArbitro", "=", " ", 
-           RowBox[{"IntegerPart", "[", 
-            RowBox[{"ageArbitroDay", "/", "365"}], "]"}]}], ";", 
-          "\[IndentingNewLine]", 
-          RowBox[{"workingDays", " ", "=", " ", 
-           RowBox[{"{", 
-            RowBox[{
-            "\"\<Lun\>\"", ",", "\"\<Mar\>\"", ",", "\"\<Mer\>\"", ",", 
-             "\"\<Gio\>\"", ",", "\"\<Ven\>\""}], "}"}]}], ";", 
-          "\[IndentingNewLine]", 
-          RowBox[{"probabilityDayOfWeek", " ", "=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"MemberQ", "[", 
-              RowBox[{"workingDays", ",", "dayOfWeekGara"}], "]"}], ",", " ", 
-             "0.7", ",", " ", "probabilityDayOfWeek"}], "]"}]}], ";", " ", 
-          "\[IndentingNewLine]", 
-          RowBox[{"probabilityDayOfWeek", " ", "=", " ", 
-           RowBox[{"If", "[", 
-            RowBox[{
+            RowBox[{"StringReplace", "[", 
              RowBox[{
-              RowBox[{"ageArbitro", "\[GreaterEqual]", "25"}], " ", "&&", " ", 
-              RowBox[{"MemberQ", "[", 
-               RowBox[{"workingDays", ",", "dayOfWeekGara"}], "]"}]}], ",", 
-             " ", "0.2", ",", " ", "probabilityDayOfWeek"}], "]"}]}], ";"}], 
-         "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{
-          RowBox[{"probability", " ", "=", " ", 
+              RowBox[{"ToLowerCase", "[", "cityArbitro", "]"}], ",", 
+              RowBox[{
+               RowBox[{"WordBoundary", "~~", "x_"}], "\[RuleDelayed]", 
+               RowBox[{"ToUpperCase", "[", "x", "]"}]}]}], "]"}], ",", 
+            "\"\< \>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"cityGara", " ", "=", " ", 
+          RowBox[{"StringDelete", "[", 
            RowBox[{
-            RowBox[{"(", 
-             RowBox[{"probbilityPast", " ", "*", " ", "0.5"}], ")"}], " ", 
-            "+", " ", 
-            RowBox[{"(", 
-             RowBox[{"probabilityDistance", " ", "*", " ", "0.25"}], ")"}], 
-            " ", "+", " ", 
-            RowBox[{"(", 
-             RowBox[{"probabilityDayOfWeek", " ", "*", " ", "0.25"}], 
-             ")"}]}]}], ";"}], "*)"}], "\[IndentingNewLine]", 
-        "\[IndentingNewLine]", 
-        RowBox[{"Return", "[", "99", "]"}], ";"}]}], "\[IndentingNewLine]", 
-      "]"}]}], "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+            RowBox[{"StringReplace", "[", 
+             RowBox[{
+              RowBox[{"ToLowerCase", "[", "cityGara", "]"}], ",", 
+              RowBox[{
+               RowBox[{"WordBoundary", "~~", "x_"}], "\[RuleDelayed]", 
+               RowBox[{"ToUpperCase", "[", "x", "]"}]}]}], "]"}], ",", 
+            "\"\< \>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+          "Calcola", " ", "la", " ", "distanza", " ", "tra", " ", "la", " ", 
+           "citt\[AGrave]", " ", 
+           RowBox[{"dell", "'"}], "arbitro", " ", "e", " ", "la", " ", 
+           "citt\[AGrave]", " ", "della", " ", "gara"}], " ", "*)"}], 
+         "\[IndentingNewLine]", 
+         RowBox[{"distanceKm", " ", "=", " ", 
+          RowBox[{"TravelDistance", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Entity", "[", 
+               RowBox[{"\"\<City\>\"", ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "cityArbitro", ",", "\"\<EmiliaRomagna\>\"", ",", 
+                  "\"\<Italy\>\""}], "}"}]}], "]"}], ",", 
+              RowBox[{"Entity", "[", 
+               RowBox[{"\"\<City\>\"", ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                 "cityGara", ",", "\"\<EmiliaRomagna\>\"", ",", 
+                  "\"\<Italy\>\""}], "}"}]}], "]"}]}], "}"}], ",", 
+            RowBox[{"TravelMethod", "\[Rule]", "\"\<Driving\>\""}]}], "]"}]}],
+          ";", "\[IndentingNewLine]", 
+         RowBox[{"distance", " ", "=", 
+          RowBox[{"QuantityMagnitude", "[", 
+           RowBox[{"IntegerPart", "[", "distanceKm", "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+          "Diminuisce", " ", "la", " ", "probabilit\[AGrave]", " ", "al", " ",
+            "crescere", " ", "della", " ", "distanza"}], " ", "*)"}], 
+         "\[IndentingNewLine]", " ", 
+         RowBox[{"probabilityDistance", " ", "-=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Between", "[", 
+             RowBox[{"distance", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", " ", "10"}], "}"}]}], "]"}], ",", " ", 
+            "0.05", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+         RowBox[{"probabilityDistance", " ", "-=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Between", "[", 
+             RowBox[{"distance", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"11", ",", " ", "20"}], "}"}]}], "]"}], ",", " ", 
+            "0.10", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+         RowBox[{"probabilityDistance", " ", "-=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Between", "[", 
+             RowBox[{"distance", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"21", ",", " ", "40"}], "}"}]}], "]"}], ",", " ", 
+            "0.15", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+         RowBox[{"probabilityDistance", " ", "-=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Between", "[", 
+             RowBox[{"distance", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"41", ",", " ", "70"}], "}"}]}], "]"}], ",", " ", 
+            "0.20", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+         RowBox[{"probabilityDistance", " ", "-=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Between", "[", 
+             RowBox[{"distance", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"71", ",", " ", "100"}], "}"}]}], "]"}], ",", " ", 
+            "0.25", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+         RowBox[{"probabilityDistance", " ", "-=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Between", "[", 
+             RowBox[{"distance", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"101", ",", " ", "150"}], "}"}]}], "]"}], ",", " ", 
+            "0.30", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+         RowBox[{"probabilityDistance", " ", "-=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Between", "[", 
+             RowBox[{"distance", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"151", ",", " ", "250"}], "}"}]}], "]"}], ",", " ", 
+            "0.35", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+         RowBox[{"probabilityDistance", " ", "-=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"Between", "[", 
+             RowBox[{"distance", ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"251", ",", " ", "999"}], "}"}]}], "]"}], ",", " ", 
+            "0.40", ",", " ", "0"}], "]"}]}], ";"}], "*)"}], 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"3", " ", "-", " ", 
+         RowBox[{"GIORNO", " ", "SETTIMANA", " ", "e", " ", "ORARIO"}]}], " ",
+         "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"probabilityDayOfWeek", " ", "=", " ", "1"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"today", " ", "=", " ", 
+          RowBox[{"DateList", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"birthDateArbitroSplitted", " ", "=", " ", 
+          RowBox[{"StringSplit", "[", 
+           RowBox[{"birthDateArbitro", ",", " ", "\"\</\>\""}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ageArbitroDay", " ", "=", " ", 
+          RowBox[{"DateDifference", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"birthDateArbitroSplitted", "[", 
+               RowBox[{"[", "3", "]"}], "]"}], ",", 
+              RowBox[{"birthDateArbitroSplitted", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", 
+              RowBox[{"birthDateArbitroSplitted", "[", 
+               RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"today", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], ",", 
+              RowBox[{"today", "[", 
+               RowBox[{"[", "2", "]"}], "]"}], ",", 
+              RowBox[{"today", "[", 
+               RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ageArbitro", "=", " ", 
+          RowBox[{"IntegerPart", "[", 
+           RowBox[{"ageArbitroDay", "/", "365"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"workingDays", " ", "=", " ", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<Lun\>\"", ",", "\"\<Mar\>\"", ",", "\"\<Mer\>\"", ",", 
+            "\"\<Gio\>\"", ",", "\"\<Ven\>\""}], "}"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"probabilityDayOfWeek", " ", "=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"MemberQ", "[", 
+             RowBox[{"workingDays", ",", "dayOfWeekGara"}], "]"}], ",", " ", 
+            "0.7", ",", " ", "probabilityDayOfWeek"}], "]"}]}], ";", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{"probabilityDayOfWeek", " ", "=", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"ageArbitro", "\[GreaterEqual]", "25"}], " ", "&&", " ", 
+             RowBox[{"MemberQ", "[", 
+              RowBox[{"workingDays", ",", "dayOfWeekGara"}], "]"}]}], ",", 
+            " ", "0.2", ",", " ", "probabilityDayOfWeek"}], "]"}]}], ";"}], 
+        "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"probability", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"probbilityPast", " ", "*", " ", "0.5"}], ")"}], " ", "+", 
+         " ", 
+         RowBox[{"(", 
+          RowBox[{"probabilityDistance", " ", "*", " ", "0.25"}], ")"}], " ", 
+         "+", " ", 
+         RowBox[{"(", 
+          RowBox[{"probabilityDayOfWeek", " ", "*", " ", "0.25"}], ")"}]}]}], 
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", 
+        RowBox[{"IntegerPart", "[", "probability", "]"}], "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{"Funzione", " ", "button", " ", "\"\<Scegli arbitro\>\""}], " ", 
     "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -427,8 +415,8 @@ LEFT JOIN stato_designazione ON designazione.IdStatoDesignazione = \
 stato_designazione.IdStatoDesignazione WHERE tesserato.IdGruppo = 2 AND \
 tesserato.Abilitato = 1 AND tesserato.Abilitazione IS NOT NULL AND \
 tesserato.ScadenzaCertificatoMedico IS NOT NULL AND tesserato.Citta IS NOT \
-NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome \>\""}], 
-          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT 10 \
+\>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"Colonna", " ", "bottoni", " ", "arbitri"}], " ", "*)"}], 
         "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -550,25 +538,16 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome \>\""}],
              RowBox[{
              "Print", "[", "\"\<------------------------------\>\"", "]"}], 
              ";"}], "*)"}], "\[IndentingNewLine]", 
-           RowBox[{"(*", 
-            RowBox[{
-             RowBox[{"probability", "=", 
-              RowBox[{"fGetProbability", "[", 
-               RowBox[{
-               "cityArbitro", ",", "birthDateArbitro", ",", " ", 
-                "acceptedArbitro", ",", " ", "refusedArbitro", ",", " ", 
-                "dayOfWeekGara", ",", " ", "timeGara", ",", "  ", 
-                "cityGara"}], "]"}]}], ";"}], "*)"}], "\[IndentingNewLine]", 
-           RowBox[{"(*", 
-            RowBox[{
-             RowBox[{"Print", "[", "i", "]"}], ";"}], "*)"}], 
-           "\[IndentingNewLine]", 
+           RowBox[{"probability", "=", 
+            RowBox[{"fGetProbability", "[", 
+             RowBox[{
+             "cityArbitro", ",", "birthDateArbitro", ",", " ", 
+              "acceptedArbitro", ",", " ", "refusedArbitro", ",", " ", 
+              "dayOfWeekGara", ",", " ", "timeGara", ",", "  ", "cityGara"}], 
+             "]"}]}], ";", "\[IndentingNewLine]", 
            RowBox[{"AppendTo", "[", 
             RowBox[{"probabilities", ",", 
-             RowBox[{"{", "i", "}"}]}], "]"}], ";"}]}], "\[IndentingNewLine]", 
-         RowBox[{"(*", 
-          RowBox[{
-           RowBox[{"Print", "[", "probabilities", "]"}], ";"}], "*)"}], 
+             RowBox[{"{", "probability", "}"}]}], "]"}], ";"}]}], 
          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
         "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
@@ -598,9 +577,8 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome \>\""}],
            "\"\<Accettate\>\"", ",", "\"\<Rifiutate\>\"", ",", 
            "\"\<Categoria\>\"", ",", "\"\<Data di nascita\>\"", ",", 
            "\"\<Cert. medico\>\"", ",", "\"\<Citt\[AGrave]\>\"", ",", 
-           "\"\<Probabilit\[AGrave] di accettare\>\"", ",", 
-           "\"\<Azione\>\""}], "}"}]}], ";", "\[IndentingNewLine]", 
-        "\[IndentingNewLine]", 
+           "\"\<Probabilit\[AGrave] di accettare\>\"", ",", "\"\<Azione\>\""}]
+           , "}"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"tableArbitriWithHeadings", "=", 
          RowBox[{"Prepend", "[", 
           RowBox[{"tableArbitri", ",", 
@@ -646,7 +624,7 @@ designazione.IdTesserato = tesserato.IdTesserato WHERE gara.IdGruppo = 2 AND \
 gara.IdAnnoSportivo = 1 AND campo_di_gioco.Campo IS NOT NULL AND gara.Data IS \
 NOT NULL AND gara.IdGirone IS NOT NULL ORDER BY gara.Data, gara.Ora, \
 gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
-1000 \>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+10 \>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"Colonna", " ", "bottoni", " ", "gare"}], " ", "*)"}], 
         "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -989,8 +967,10 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
    3.7673573938093257`*^9}, {3.7673574855593743`*^9, 
    3.7673574870037327`*^9}, {3.767357932641428*^9, 3.7673579354891405`*^9}, 
    3.7673579769474936`*^9, {3.7673580645705748`*^9, 3.767358067226117*^9}, {
-   3.7673581407657876`*^9, 
-   3.767358192941903*^9}},ExpressionUUID->"cf18dd23-aebd-4759-800c-\
+   3.7673581407657876`*^9, 3.767358192941903*^9}, {3.767358320367338*^9, 
+   3.767358332698413*^9}, {3.76735836382533*^9, 3.767358432427515*^9}, {
+   3.767358465786833*^9, 
+   3.767358476202434*^9}},ExpressionUUID->"cf18dd23-aebd-4759-800c-\
 ca6ba94acb43"],
 
 Cell[BoxData[
@@ -1004,8 +984,9 @@ Cell[BoxData[
    3.767357193269395*^9, 3.7673572354500074`*^9, 3.767357280395344*^9, {
    3.7673573274261456`*^9, 3.7673573425999675`*^9}, 3.767357396127907*^9, 
    3.767357489411462*^9, 3.767357981566428*^9, {3.7673580694436817`*^9, 
-   3.7673580990931854`*^9}, 3.7673581565946417`*^9},
- CellLabel->"Out[48]=",ExpressionUUID->"575cd959-4cdf-4f8a-885a-27caf70371fb"],
+   3.7673580990931854`*^9}, 3.7673581565946417`*^9, 3.7673583501917725`*^9, {
+   3.767358390561936*^9, 3.7673584350531254`*^9}},
+ CellLabel->"Out[92]=",ExpressionUUID->"e991fb25-5257-4eb0-9cdc-1e65998266fd"],
 
 Cell[BoxData[
  ButtonBox["\<\"Visualizza gare\"\>",
@@ -1019,8 +1000,9 @@ Cell[BoxData[
    3.767357193269395*^9, 3.7673572354500074`*^9, 3.767357280395344*^9, {
    3.7673573274261456`*^9, 3.7673573425999675`*^9}, 3.767357396127907*^9, 
    3.767357489411462*^9, 3.767357981566428*^9, {3.7673580694436817`*^9, 
-   3.7673580990931854`*^9}, 3.767358156601643*^9},
- CellLabel->"Out[49]=",ExpressionUUID->"16b6d007-1bac-454f-b129-090de1cbb230"]
+   3.7673580990931854`*^9}, 3.7673581565946417`*^9, 3.7673583501917725`*^9, {
+   3.767358390561936*^9, 3.7673584350592947`*^9}},
+ CellLabel->"Out[93]=",ExpressionUUID->"526d2b0e-4f35-4b05-85c0-55093694a39e"]
 }, Open  ]]
 },
 WindowSize->{1366, 685},
@@ -1040,9 +1022,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 50404, 971, 4228, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
-Cell[50987, 995, 637, 12, 52, "Output",ExpressionUUID->"575cd959-4cdf-4f8a-885a-27caf70371fb"],
-Cell[51627, 1009, 693, 13, 44, "Output",ExpressionUUID->"16b6d007-1bac-454f-b129-090de1cbb230"]
+Cell[580, 22, 49686, 951, 4190, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+Cell[50269, 975, 713, 13, 52, "Output",ExpressionUUID->"e991fb25-5257-4eb0-9cdc-1e65998266fd"],
+Cell[50985, 990, 771, 14, 44, "Output",ExpressionUUID->"526d2b0e-4f35-4b05-85c0-55093694a39e"]
 }, Open  ]]
 }
 ]
