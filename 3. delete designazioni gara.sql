@@ -1,0 +1,1 @@
+DELETE FROM designazione WHERE IdGara = xxx

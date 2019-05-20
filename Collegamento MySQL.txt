@@ -1,0 +1,33 @@
+Bisogna installare MySQL 5.7 altrimenti non va
+
+// Crea la connessione con il database
+
+Needs["DatabaseLink`"];
+JDBCDrivers["MySQL(Connector/J)"];
+conn1 = OpenSQLConnection[
+  JDBC["MySQL(Connector/J)", "127.0.0.1:3306/classicmodels"], 
+  "Username" -> "root", "Password" -> ""]
+
+
+
+// Visualizza le tabelle presenti nel database
+
+SQLTables[conn1]
+
+
+
+// Estrae il contenuto della tabella "customers"
+
+data = SQLExecute[conn1, "SELECT * FROM customers"];
+data
+
+
+
+// Inserisce il contenuto nella tabella "customers"
+
+data = SQLExecute[conn1, 
+   "INSERT INTO customers (customerNumber, customerName, \
+contactLastName, contactFirstName, phone, addressLine1, city, \
+country) VALUES ('123456', 'Lorenzo Lanzarone', 'Lanzarone', \
+'Lorenzo', '3318672565', 'Via Santo Stefano', 'Funo di Argelato', \
+'Italia'); "];
