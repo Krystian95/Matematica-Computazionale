@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     55915,       1076]
-NotebookOptionsPosition[     55364,       1058]
-NotebookOutlinePosition[     55731,       1074]
-CellTagsIndexPosition[     55688,       1071]
+NotebookDataLength[     51735,       1013]
+NotebookOptionsPosition[     51363,        995]
+NotebookOutlinePosition[     51717,       1011]
+CellTagsIndexPosition[     51674,       1008]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -47,8 +47,8 @@ Cell[BoxData[
     RowBox[{"Module", "[", 
      RowBox[{
       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"(*", " ", "TEST", " ", "*)"}], "\[IndentingNewLine]", " ", 
-      RowBox[{"(*", 
+      RowBox[{"(*", " ", "TEST", " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
        RowBox[{
         RowBox[{"dayOfWeekGara", " ", "=", " ", "\"\<Lun\>\""}], ";", 
         "\[IndentingNewLine]", 
@@ -71,16 +71,14 @@ Cell[BoxData[
        "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{"2", " ", "-", " ", "DISTANZA"}], " ", "*)"}], 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"probabilityDistance", " ", "=", " ", "1"}], ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"(*", " ", 
-        RowBox[{
-        "Replace", " ", "particolare", " ", "perch\[EGrave]", " ", 
-         "\"\<Terre Del Reno\>\"", " ", "non", " ", "\[EGrave]", " ", 
-         "riconosciuto", " ", "come", " ", "citt\[AGrave]"}], " ", "*)"}], 
        "\[IndentingNewLine]", 
-       RowBox[{"(*", 
+       RowBox[{"(*", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Replace", " ", "particolare", " ", "perch\[EGrave]", " ", 
+          "\"\<Terre Del Reno\>\"", " ", "non", " ", "\[EGrave]", " ", 
+          "riconosciuto", " ", "come", " ", "citt\[AGrave]"}], " ", "*)"}], 
+        "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{"cityArbitro", " ", "=", 
           RowBox[{"If", "[", 
@@ -152,13 +150,17 @@ Cell[BoxData[
           ";", "\[IndentingNewLine]", 
          RowBox[{"distance", " ", "=", 
           RowBox[{"QuantityMagnitude", "[", 
-           RowBox[{"IntegerPart", "[", "distanceKm", "]"}], "]"}]}], ";", 
-         "\[IndentingNewLine]", "\[IndentingNewLine]", 
-         RowBox[{"(*", " ", 
-          RowBox[{
-          "Diminuisce", " ", "la", " ", "probabilit\[AGrave]", " ", "al", " ",
-            "crescere", " ", "della", " ", "distanza"}], " ", "*)"}], 
-         "\[IndentingNewLine]", " ", 
+           RowBox[{"IntegerPart", "[", "distanceKm", "]"}], "]"}]}], ";"}], 
+        "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"probabilityDistance", " ", "=", " ", "1"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Diminuisce", " ", "la", " ", "probabilit\[AGrave]", " ", "al", " ", 
+         "crescere", " ", "della", " ", "distanza"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", "\[IndentingNewLine]", " ", 
+        RowBox[{
          RowBox[{"probabilityDistance", " ", "-=", " ", 
           RowBox[{"If", "[", 
            RowBox[{
@@ -222,15 +224,15 @@ Cell[BoxData[
              RowBox[{"distance", ",", " ", 
               RowBox[{"{", 
                RowBox[{"251", ",", " ", "999"}], "}"}]}], "]"}], ",", " ", 
-            "0.40", ",", " ", "0"}], "]"}]}], ";"}], "*)"}], 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+            "0.40", ",", " ", "0"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+        "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{"3", " ", "-", " ", 
          RowBox[{"GIORNO", " ", "SETTIMANA", " ", "e", " ", "ORARIO"}]}], " ",
          "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"probabilityDayOfWeek", " ", "=", " ", "1"}], ";", 
        "\[IndentingNewLine]", 
-       RowBox[{"(*", 
+       RowBox[{"(*", "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{"today", " ", "=", " ", 
           RowBox[{"DateList", "[", "]"}]}], ";", "\[IndentingNewLine]", 
@@ -280,10 +282,11 @@ Cell[BoxData[
            RowBox[{
             RowBox[{
              RowBox[{"ageArbitro", "\[GreaterEqual]", "25"}], " ", "&&", " ", 
+             
              RowBox[{"MemberQ", "[", 
               RowBox[{"workingDays", ",", "dayOfWeekGara"}], "]"}]}], ",", 
             " ", "0.2", ",", " ", "probabilityDayOfWeek"}], "]"}]}], ";"}], 
-        " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        " ", "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
        RowBox[{"probability", " ", "=", " ", 
         RowBox[{
          RowBox[{"(", 
@@ -295,12 +298,7 @@ Cell[BoxData[
          RowBox[{"(", 
           RowBox[{"probabilityDayOfWeek", " ", "*", " ", "0.25"}], ")"}]}]}], 
        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"Return", "[", 
-        RowBox[{"IntegerPart", "[", "probability", "]"}], "]"}], ";"}]}], 
-     "\[IndentingNewLine]", 
-     RowBox[{"(*", 
-      RowBox[{
-       RowBox[{"Return", "[", "99", "]"}], ";"}], "*)"}], 
+       RowBox[{"Return", "[", "probability", "]"}], ";"}]}], 
      "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
@@ -310,42 +308,33 @@ Cell[BoxData[
     RowBox[{
      RowBox[{"behaviorButtonsGare", "[", 
       RowBox[{"selectedRowGara_", ",", " ", "selectedIdGara_"}], "]"}], ":=", 
-     " ", 
-     RowBox[{"Module", "[", 
-      RowBox[{
-       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", " ", 
-       RowBox[{
-        RowBox[{"notebookArbitri", " ", "=", " ", 
-         RowBox[{"CreateDocument", "[", 
-          RowBox[{"{", "\[IndentingNewLine]", 
-           RowBox[{
+     "\[IndentingNewLine]", " ", 
+     RowBox[{"notebookArbitri", " ", "=", " ", 
+      RowBox[{"CreateDocument", "[", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"selectedIdGaraGlobal", " ", "=", " ", "selectedIdGara"}], 
+          ";"}], ",", "\[IndentingNewLine]", "fRefreshArbitri", ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"NotebookClose", "[", "notebookGare", "]"}], ";"}], "*)"}],
+          "\[IndentingNewLine]", 
+         RowBox[{"Style", "[", 
+          RowBox[{"Arbitri", ",", 
+           RowBox[{"{", 
             RowBox[{
-             RowBox[{
-             "Print", "[", "\"\<*******************************\>\"", "]"}], 
-             ";", "\[IndentingNewLine]", 
-             RowBox[{
-             "selectedIdGaraGlobal", " ", "=", " ", "selectedIdGara"}], ";", 
-             "\[IndentingNewLine]", "fRefreshArbitri"}], ",", 
-            "\[IndentingNewLine]", 
-            RowBox[{"(*", 
-             RowBox[{
-              RowBox[{"NotebookClose", "[", "notebookGare", "]"}], ";"}], 
-             "*)"}], "\[IndentingNewLine]", 
-            RowBox[{"Style", "[", 
-             RowBox[{"Arbitri", ",", 
-              RowBox[{"{", 
-               RowBox[{
-                RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
-                RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
-               "}"}]}], " ", "]"}], ",", "\[IndentingNewLine]", 
-            RowBox[{"Panel", "[", 
-             RowBox[{
-              RowBox[{"TableForm", "[", "tableArbitriWithHeadings", "]"}], 
-              ",", "\"\<\>\"", ",", "Top", ",", 
-              RowBox[{"Appearance", "\[Rule]", "\"\<Frameless\>\""}]}], 
-             "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], ";"}]}], 
-      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
+             RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
+             RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
+            "}"}]}], " ", "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Panel", "[", 
+          RowBox[{
+           RowBox[{"TableForm", "[", "tableArbitriWithHeadings", "]"}], ",", 
+           "\"\<\>\"", ",", "Top", ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Frameless\>\""}]}], "]"}]}], 
+        "\[IndentingNewLine]", "}"}], "]"}]}]}], ";"}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
     RowBox[{"Funzione", " ", "button", " ", "\"\<Designa arbitro\>\""}], " ", 
     "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -402,6 +391,7 @@ IdRuoloDesignazione, IdStatoDesignazione, DataOra) VALUES (\>\"", " ", "<>",
      RowBox[{"Module", "[", 
       RowBox[{
        RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       
        RowBox[{"(*", " ", 
         RowBox[{
         "Query", " ", "per", " ", "recuperare", " ", "la", " ", "tabella", 
@@ -425,8 +415,8 @@ LEFT JOIN stato_designazione ON designazione.IdStatoDesignazione = \
 stato_designazione.IdStatoDesignazione WHERE tesserato.IdGruppo = 2 AND \
 tesserato.Abilitato = 1 AND tesserato.Abilitazione IS NOT NULL AND \
 tesserato.ScadenzaCertificatoMedico IS NOT NULL AND tesserato.Citta IS NOT \
-NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT \
-10\>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome\>\""}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"Colonna", " ", "bottoni", " ", "arbitri"}], " ", "*)"}], 
         "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -481,17 +471,6 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT \
           RowBox[{"[", 
            RowBox[{"selectedRowGara", ",", "12"}], "]"}], "]"}]}], ";", 
         "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", 
-         RowBox[{"\"\<dayOfWeekGara = \>\"", ",", " ", "dayOfWeekGara"}], 
-         "]"}], ";", "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", 
-         RowBox[{"\"\<timeGara = \>\"", ",", " ", "timeGara"}], "]"}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", 
-         RowBox[{"\"\<cityGara = \>\"", ",", " ", "cityGara"}], "]"}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", "\"\<****************************\>\"", "]"}], 
-        ";", "\[IndentingNewLine]", 
         RowBox[{"probabilities", "=", 
          RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
         "\[IndentingNewLine]", 
@@ -502,14 +481,12 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT \
            RowBox[{"Length", "[", "dataArbitri", "]"}]}], ",", 
           RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
           RowBox[{
-           RowBox[{"Print", "[", 
-            RowBox[{
-            "\"\<selectedRowArbitro = \>\"", ",", " ", "selectedRowArbitro"}],
-             "]"}], ";", "\[IndentingNewLine]", 
            RowBox[{"cityArbitro", "=", 
             RowBox[{"tableArbitri", "[", 
              RowBox[{"[", 
               RowBox[{"selectedRowArbitro", ",", "11"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Print", "[", "cityArbitro", "]"}], ";", 
            "\[IndentingNewLine]", 
            RowBox[{"birthDateArbitro", "=", 
             RowBox[{"tableArbitri", "[", 
@@ -526,32 +503,23 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT \
              RowBox[{"[", 
               RowBox[{"selectedRowArbitro", ",", "7"}], "]"}], "]"}]}], ";", 
            "\[IndentingNewLine]", 
-           RowBox[{"Print", "[", 
-            RowBox[{"\"\<cityArbitro = \>\"", ",", " ", "cityArbitro"}], 
-            "]"}], ";", "\[IndentingNewLine]", 
-           RowBox[{"Print", "[", 
-            RowBox[{
-            "\"\<birthDateArbitro = \>\"", ",", " ", "birthDateArbitro"}], 
-            "]"}], ";", "\[IndentingNewLine]", 
-           RowBox[{"Print", "[", 
-            RowBox[{
-            "\"\<acceptedArbitro = \>\"", ",", " ", "acceptedArbitro"}], 
-            "]"}], ";", "\[IndentingNewLine]", 
-           RowBox[{"Print", "[", 
-            RowBox[{"\"\<refusedArbitro = \>\"", ",", " ", "refusedArbitro"}],
-             "]"}], ";", "\[IndentingNewLine]", 
-           RowBox[{"Print", "[", "\"\<------------------------\>\"", "]"}], 
-           ";", "\[IndentingNewLine]", 
-           RowBox[{"probability", " ", "=", " ", 
+           RowBox[{"probability", "=", 
             RowBox[{"fGetProbability", "[", 
              RowBox[{
-             "cityArbitro", ",", " ", "birthDateArbitro", ",", " ", 
+             "cityArbitro", ",", "birthDateArbitro", ",", " ", 
               "acceptedArbitro", ",", " ", "refusedArbitro", ",", " ", 
               "dayOfWeekGara", ",", " ", "timeGara", ",", "  ", "cityGara"}], 
              "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"Print", "[", "i", "]"}], ";"}], "*)"}], 
+           "\[IndentingNewLine]", 
            RowBox[{"AppendTo", "[", 
             RowBox[{"probabilities", ",", 
-             RowBox[{"{", "probability", "}"}]}], "]"}], ";"}]}], 
+             RowBox[{"{", "i", "}"}]}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"Print", "[", "probabilities", "]"}], ";"}], "*)"}], 
          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
         "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
@@ -603,6 +571,7 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT \
      RowBox[{"Module", "[", 
       RowBox[{
        RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       
        RowBox[{"(*", " ", 
         RowBox[{
         "Query", " ", "per", " ", "recuperare", " ", "la", " ", "tabella", 
@@ -629,7 +598,7 @@ designazione.IdTesserato = tesserato.IdTesserato WHERE gara.IdGruppo = 2 AND \
 gara.IdAnnoSportivo = 1 AND campo_di_gioco.Campo IS NOT NULL AND gara.Data IS \
 NOT NULL AND gara.IdGirone IS NOT NULL ORDER BY gara.Data, gara.Ora, \
 gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
-10 \>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+1000 \>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"Colonna", " ", "bottoni", " ", "gare"}], " ", "*)"}], 
         "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -641,14 +610,14 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
              RowBox[{"{", 
               RowBox[{"i", "=", "i"}], "}"}], ",", 
              RowBox[{"Button", "[", 
-              RowBox[{"\"\<Scegli arbitro\>\"", ",", "\[IndentingNewLine]", 
+              RowBox[{"\"\<Scegli arbitro\>\"", ",", 
                RowBox[{"behaviorButtonsGare", "[", 
                 RowBox[{
                  RowBox[{"selectedRowGara", " ", "=", " ", "i"}], ",", " ", 
                  RowBox[{"tableGare", "[", 
                   RowBox[{"[", 
                    RowBox[{"selectedRowGara", ",", "2"}], "]"}], "]"}]}], 
-                "]"}]}], "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+                "]"}]}], "]"}]}], "]"}], ",", 
            RowBox[{"{", 
             RowBox[{"i", ",", "1", ",", 
              RowBox[{"Length", "[", "dataGare", "]"}]}], "}"}]}], "]"}]}], 
@@ -712,6 +681,7 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
      RowBox[{"Module", "[", 
       RowBox[{
        RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       
        RowBox[{"(*", " ", 
         RowBox[{"Connssione", " ", "al", " ", "database"}], " ", "*)"}], 
        "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -726,15 +696,15 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
             "\"\<MySQL(Connector/J)\>\"", ",", 
              "\"\<127.0.0.1:3306/designazioni\>\""}], "]"}], ",", 
            RowBox[{"\"\<Username\>\"", "\[Rule]", "\"\<root\>\""}], ",", 
-           RowBox[{"\"\<Password\>\"", "\[Rule]", "\"\<root\>\""}]}], "]"}]}],
-         ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"\"\<Password\>\"", "\[Rule]", "\"\<\>\""}]}], "]"}]}], 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{
          "Aggiorna", " ", "tabelle", " ", "arbitri", " ", "e", " ", "gare"}], 
          " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{"fRefreshArbitri", ";"}], "*)"}], "\[IndentingNewLine]", 
-        "fRefreshGare", ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{"fRefreshArbitri", ";"}], " ", "*)"}], "\[IndentingNewLine]",
+         "fRefreshGare", ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{
          "Cra", " ", "il", " ", "notebook", " ", "gare", " ", "iniziale"}], 
@@ -779,11 +749,8 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
       RowBox[{"\"\<Evaluate Notebook\>\"", ".", " ", "Successivamente"}], " ",
        "premere", " ", "sul", " ", "bottone", " ", 
       RowBox[{"\"\<Visualizza gare\>\"", "."}]}]}], " ", "*)"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
-   RowBox[{"(*", " ", 
-    RowBox[{"Cell", " ", ">", " ", 
-     RowBox[{"Cell", " ", "properties"}], " ", ">", " ", "Open"}], " ", 
-    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
  CellChangeTimes->{{3.7669034882796173`*^9, 3.766903496323134*^9}, 
    3.766903539620253*^9, {3.766903742184678*^9, 3.7669038180336933`*^9}, {
    3.766903860894856*^9, 3.7669039044774323`*^9}, {3.7669043583833447`*^9, 
@@ -960,73 +927,11 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
    3.7670991864195423`*^9, {3.767099358689827*^9, 3.767099380353603*^9}, {
    3.7670994551974993`*^9, 3.767099502477219*^9}, {3.767099614057365*^9, 
    3.767099701098794*^9}, {3.767099782277372*^9, 3.767099785108768*^9}, {
-   3.7670999171151223`*^9, 3.7671000302587547`*^9}, {3.76732983845261*^9, 
-   3.7673298505236397`*^9}, {3.767329881296132*^9, 3.7673298863373404`*^9}, 
-   3.767329981961803*^9, 3.7673300365060863`*^9, {3.767335900850976*^9, 
-   3.7673359164651327`*^9}, {3.767336162286314*^9, 3.767336190640929*^9}, {
-   3.767336985972822*^9, 3.767337004845832*^9}, {3.7673370508551817`*^9, 
-   3.7673370537734423`*^9}, {3.767337254349351*^9, 3.767337254866476*^9}, {
-   3.7673373435750017`*^9, 3.7673373535355043`*^9}, 3.767337445839769*^9, {
-   3.7673375268057833`*^9, 3.7673375270167146`*^9}, {3.7673377322940187`*^9, 
-   3.7673377335173254`*^9}, {3.76733788185144*^9, 3.767337887592966*^9}, {
-   3.7673380437276754`*^9, 3.7673380475576296`*^9}, {3.7673382811846867`*^9, 
-   3.767338293573807*^9}, {3.7673383919269505`*^9, 3.76733839805848*^9}, {
-   3.767338590782016*^9, 3.7673385909590597`*^9}, {3.767338634234953*^9, 
-   3.767338648283492*^9}, {3.7673386856148973`*^9, 3.7673387374799767`*^9}, {
-   3.7673387767147837`*^9, 3.7673387825012307`*^9}, 3.7673388157936125`*^9, {
-   3.7673388939522705`*^9, 3.767338908602975*^9}, {3.7673390543683586`*^9, 
-   3.767339066725706*^9}, {3.767339166835782*^9, 3.767339167135887*^9}, {
-   3.7673392715360928`*^9, 3.7673393112270565`*^9}, {3.7673393715501547`*^9, 
-   3.767339432938589*^9}, 3.767339470094933*^9, {3.767339636102*^9, 
-   3.767339795950302*^9}, {3.767339849482622*^9, 3.767339858630911*^9}, {
-   3.7673400194688754`*^9, 3.7673400206751657`*^9}, {3.7673400645363035`*^9, 
-   3.7673400674900427`*^9}, {3.7673401178941064`*^9, 
-   3.7673401284507456`*^9}, {3.767340174131215*^9, 3.767340226861453*^9}, {
-   3.7673402846209345`*^9, 3.7673403091901045`*^9}, {3.767340363956888*^9, 
-   3.7673403948166227`*^9}, {3.767340491570098*^9, 3.767340554986102*^9}, {
-   3.7673405856060286`*^9, 3.767340594488182*^9}, {3.7673406368118305`*^9, 
-   3.7673406532410927`*^9}, {3.7673407185807753`*^9, 3.76734071945599*^9}, {
-   3.7673407707358932`*^9, 3.767340771657116*^9}, {3.767340840603588*^9, 
-   3.767340841899913*^9}, {3.76734088788249*^9, 3.7673409306992445`*^9}, {
-   3.7673409716615734`*^9, 3.767341003852672*^9}, {3.767341079993602*^9, 
-   3.767341081295925*^9}, {3.767341124192963*^9, 3.7673411318128777`*^9}, 
-   3.7673411739335833`*^9, {3.767345206878411*^9, 3.7673452139982*^9}, {
-   3.767345295840719*^9, 3.7673453019632587`*^9}, {3.7673455074562616`*^9, 
-   3.767345516223476*^9}, 3.7673461845926476`*^9, {3.767346228783745*^9, 
-   3.7673462302401123`*^9}, {3.7673463394885006`*^9, 
-   3.7673463412589407`*^9}, {3.767346405615103*^9, 3.7673464286268806`*^9}, {
-   3.7673464627314234`*^9, 3.7673464753095818`*^9}, {3.76734655156575*^9, 
-   3.7673465594087176`*^9}, {3.767346598198431*^9, 3.767346661909397*^9}, {
-   3.767346720499133*^9, 3.7673467271077957`*^9}, 3.7673468436180744`*^9, {
-   3.7673470116423597`*^9, 3.767347057432901*^9}, {3.7673471216560802`*^9, 
-   3.767347128850896*^9}, {3.7673471776071424`*^9, 3.767347201023017*^9}, {
-   3.767347802157053*^9, 3.7673478444726715`*^9}, {3.7673479772031903`*^9, 
-   3.7673479834747677`*^9}, {3.7673481331354337`*^9, 3.767348161311513*^9}, {
-   3.7673482136779385`*^9, 3.7673482400605736`*^9}, {3.7673483196926165`*^9, 
-   3.767348338372449*^9}, {3.7673484274103813`*^9, 3.7673484331757603`*^9}, {
-   3.7673485053479176`*^9, 3.767348523434474*^9}, {3.7673485888770638`*^9, 
-   3.7673486020212283`*^9}, {3.7673487106435633`*^9, 
-   3.7673487203449917`*^9}, {3.7673488424417987`*^9, 
-   3.7673488436621027`*^9}, {3.7673489554184656`*^9, 
-   3.7673490534839954`*^9}, {3.7673491015630736`*^9, 
-   3.7673491024713707`*^9}, {3.767349142883547*^9, 3.767349275777598*^9}, {
-   3.767349308233842*^9, 3.767349370348327*^9}, {3.7673494056662235`*^9, 
-   3.76734957315831*^9}, {3.7673496201120777`*^9, 3.767349632800342*^9}, {
-   3.767349673584506*^9, 3.767349702511822*^9}, {3.767349757009568*^9, 
-   3.767349786913992*^9}, {3.767349843018241*^9, 3.767349852840887*^9}, {
-   3.7673498830034475`*^9, 3.767349884298766*^9}, {3.7673499168258204`*^9, 
-   3.767349922762377*^9}, {3.767349988493884*^9, 3.7673500301843753`*^9}, {
-   3.7673501599618177`*^9, 3.7673501914033337`*^9}, {3.767350246158069*^9, 
-   3.767350253441941*^9}, {3.767350379980524*^9, 3.7673503829472694`*^9}, {
-   3.7673505049739122`*^9, 3.767350509872142*^9}, {3.7673505418631763`*^9, 
-   3.76735058248651*^9}, {3.767350631071598*^9, 3.767350636692021*^9}, 
-   3.7673507637859106`*^9, {3.76735081341146*^9, 3.767350815468906*^9}, {
-   3.7673513075968866`*^9, 3.7673513090471196`*^9}, {3.7673514750709887`*^9, 
-   3.767351503623178*^9}, 3.767351641951939*^9, {3.7673516782701993`*^9, 
-   3.767351682744198*^9}, {3.7673520160078754`*^9, 3.767352018597452*^9}, 
-   3.767352517262802*^9, {3.767352609910511*^9, 
-   3.767352610056525*^9}},ExpressionUUID->"cf18dd23-aebd-4759-800c-\
-ca6ba94acb43"],
+   3.7670999171151223`*^9, 3.7671000302587547`*^9}, {3.767353525143086*^9, 
+   3.767353656383876*^9}, {3.767353686979377*^9, 3.76735371446635*^9}, {
+   3.767353931129442*^9, 3.7673539472680273`*^9}, {3.7673540950709743`*^9, 
+   3.767354107046605*^9}},
+ ExpressionUUID -> "cf18dd23-aebd-4759-800c-ca6ba94acb43"],
 
 Cell[BoxData[
  StyleBox["Designazioni",
@@ -1034,12 +939,28 @@ Cell[BoxData[
   FontFamily->"Helvetica",
   FontSize->30]], "Output",
  CellChangeTimes->{
-  3.767350384889756*^9, 3.7673505123567653`*^9, 3.767350562206274*^9, 
-   3.7673507718849487`*^9, 3.7673508200810685`*^9, 3.767351508156195*^9, 
-   3.7673515540407143`*^9, 3.7673516450027065`*^9, {3.767351685150806*^9, 
-   3.767351687965517*^9}, 3.767351747273178*^9, 3.767351851177594*^9, 
-   3.767351887188448*^9, 3.7673520606899643`*^9},
- CellLabel->"Out[9]=",ExpressionUUID->"dfafa117-c2c2-477e-b9d7-bb3a0e6c81ff"],
+  3.767087952262484*^9, 3.767088011365491*^9, 3.767088150717236*^9, 
+   3.767091228254244*^9, 3.7670912725260353`*^9, 3.767091312987719*^9, 
+   3.767091346416069*^9, {3.7670914690262213`*^9, 3.767091494450818*^9}, {
+   3.7670915472638083`*^9, 3.767091567334464*^9}, 3.767091605818039*^9, {
+   3.767091649971623*^9, 3.767091674842848*^9}, 3.767091743697053*^9, 
+   3.767091943617941*^9, 3.767091976199786*^9, 3.7670920137170477`*^9, 
+   3.767092048188303*^9, {3.767092176877985*^9, 3.7670921947317677`*^9}, 
+   3.767092286460623*^9, 3.7670923829439983`*^9, 3.767092434070115*^9, {
+   3.767092483446046*^9, 3.767092500359886*^9}, 3.767095562392908*^9, 
+   3.767097851003145*^9, {3.767097963479044*^9, 3.767098009376745*^9}, 
+   3.767098043649928*^9, {3.7670981702839527`*^9, 3.7670982324287243`*^9}, 
+   3.7670982824136553`*^9, 3.767098340658309*^9, {3.767098376764161*^9, 
+   3.7670984054525127`*^9}, 3.7670985234721813`*^9, 3.767098568521843*^9, 
+   3.767098647742222*^9, 3.767098686404252*^9, 3.76709896961101*^9, 
+   3.767099014834462*^9, 3.7670991577179956`*^9, 3.767099192536848*^9, 
+   3.7670993901068783`*^9, 3.767099476071412*^9, 3.7670995580355263`*^9, 
+   3.767099646164324*^9, 3.767099704920236*^9, 3.767099788349923*^9, {
+   3.76710006076943*^9, 3.767100067145116*^9}, 3.7673539096195297`*^9, {
+   3.767353939678998*^9, 3.767353950674622*^9}, 3.767354052483322*^9, 
+   3.7673541104164047`*^9, 3.767354213954618*^9, 3.7673542607478123`*^9, 
+   3.767354292229021*^9},
+ ExpressionUUID -> "88086e5a-b5ab-492d-b39a-15629e975b9e"],
 
 Cell[BoxData[
  ButtonBox["\<\"Visualizza gare\"\>",
@@ -1048,18 +969,34 @@ Cell[BoxData[
   Evaluator->Automatic,
   Method->"Preemptive"]], "Output",
  CellChangeTimes->{
-  3.767350384889756*^9, 3.7673505123567653`*^9, 3.767350562206274*^9, 
-   3.7673507718849487`*^9, 3.7673508200810685`*^9, 3.767351508156195*^9, 
-   3.7673515540407143`*^9, 3.7673516450027065`*^9, {3.767351685150806*^9, 
-   3.767351687965517*^9}, 3.767351747273178*^9, 3.767351851177594*^9, 
-   3.767351887188448*^9, 3.767352060713971*^9},
- CellLabel->"Out[10]=",ExpressionUUID->"621533b0-82e4-4864-8c2b-8c10006d76b2"]
+  3.767087952262484*^9, 3.767088011365491*^9, 3.767088150717236*^9, 
+   3.767091228254244*^9, 3.7670912725260353`*^9, 3.767091312987719*^9, 
+   3.767091346416069*^9, {3.7670914690262213`*^9, 3.767091494450818*^9}, {
+   3.7670915472638083`*^9, 3.767091567334464*^9}, 3.767091605818039*^9, {
+   3.767091649971623*^9, 3.767091674842848*^9}, 3.767091743697053*^9, 
+   3.767091943617941*^9, 3.767091976199786*^9, 3.7670920137170477`*^9, 
+   3.767092048188303*^9, {3.767092176877985*^9, 3.7670921947317677`*^9}, 
+   3.767092286460623*^9, 3.7670923829439983`*^9, 3.767092434070115*^9, {
+   3.767092483446046*^9, 3.767092500359886*^9}, 3.767095562392908*^9, 
+   3.767097851003145*^9, {3.767097963479044*^9, 3.767098009376745*^9}, 
+   3.767098043649928*^9, {3.7670981702839527`*^9, 3.7670982324287243`*^9}, 
+   3.7670982824136553`*^9, 3.767098340658309*^9, {3.767098376764161*^9, 
+   3.7670984054525127`*^9}, 3.7670985234721813`*^9, 3.767098568521843*^9, 
+   3.767098647742222*^9, 3.767098686404252*^9, 3.76709896961101*^9, 
+   3.767099014834462*^9, 3.7670991577179956`*^9, 3.767099192536848*^9, 
+   3.7670993901068783`*^9, 3.767099476071412*^9, 3.7670995580355263`*^9, 
+   3.767099646164324*^9, 3.767099704920236*^9, 3.767099788349923*^9, {
+   3.76710006076943*^9, 3.767100067145116*^9}, 3.7673539096195297`*^9, {
+   3.767353939678998*^9, 3.767353950674622*^9}, 3.767354052483322*^9, 
+   3.7673541104164047`*^9, 3.767354213954618*^9, 3.7673542607478123`*^9, 
+   3.767354292237752*^9},
+ ExpressionUUID -> "88086e5a-b5ab-492d-b39a-15629e975b9e"]
 }, Open  ]]
 },
-WindowSize->{1366, 685},
-WindowMargins->{{-8, Automatic}, {Automatic, -8}},
-WindowStatusArea->None,
-FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+WindowSize->{1366, 686},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -1074,9 +1011,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 53593, 1006, 4228, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
-Cell[54176, 1030, 556, 11, 52, "Output",ExpressionUUID->"dfafa117-c2c2-477e-b9d7-bb3a0e6c81ff"],
-Cell[54735, 1043, 613, 12, 44, "Output",ExpressionUUID->"621533b0-82e4-4864-8c2b-8c10006d76b2"]
+Cell[580, 22, 47357, 911, 3752, "Input"],
+Cell[47940, 935, 1673, 27, 47, "Output"],
+Cell[49616, 964, 1731, 28, 43, "Output"]
 }, Open  ]]
 }
 ]
