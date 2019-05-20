@@ -1,0 +1,992 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     50273,        984]
+NotebookOptionsPosition[     49747,        967]
+NotebookOutlinePosition[     50090,        982]
+CellTagsIndexPosition[     50047,        979]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Importazione", " ", "libreria", " ", "collegamento", " ", "al", " ", 
+    "database", " ", "MySQL"}], " ", "*)"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Needs", "[", "\"\<DatabaseLink`\>\"", "]"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Variabile", " ", "globale", " ", "id", " ", "gara", " ", "selezionata"}],
+     " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"selectedIdGaraGlobal", " ", "=", " ", "0"}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fGetProbability", "[", 
+     RowBox[{
+     "cityArbitro", ",", "birthDateArbitro", ",", " ", "acceptedArbitro", ",",
+       " ", "refusedArbitro", ",", " ", "dayOfWeekGara", ",", " ", "timeGara",
+       ",", "  ", "cityGara"}], "]"}], " ", ":=", " ", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", "TEST", " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"dayOfWeekGara", " ", "=", " ", "\"\<Lun\>\""}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"cityArbitro", " ", "=", " ", "\"\<TERRE DEL RENO\>\""}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"cityGara", " ", "=", " ", "\"\<Ferrara\>\""}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"birthDateArbitro", " ", "=", " ", "\"\<02/07/1995\>\""}], 
+        ";"}], " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"probability", " ", "=", " ", "0"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"1", " ", "-", " ", "STORICO"}], " ", "*)"}], 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"probbilityPast", " ", "=", " ", 
+        RowBox[{"acceptedArbitro", " ", "/", 
+         RowBox[{"(", 
+          RowBox[{"acceptedArbitro", "+", "refusedArbitro"}], ")"}]}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"2", " ", "-", " ", "DISTANZA"}], " ", "*)"}], 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Replace", " ", "particolare", " ", "perch\[EGrave]", " ", 
+         "\"\<Terre Del Reno\>\"", " ", "non", " ", "\[EGrave]", " ", 
+         "riconosciuto", " ", "come", " ", "citt\[AGrave]"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"cityArbitro", " ", "=", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"cityArbitro", "\[Equal]", "\"\<TERRE DEL RENO\>\""}], ",", 
+          "\"\<Mirabello\>\"", ",", "cityArbitro"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"cityGara", " ", "=", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"cityGara", "\[Equal]", "\"\<TERRE DEL RENO\>\""}], ",", 
+          "\"\<Mirabello\>\"", ",", "cityGara"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+         "Trasforma", " ", "le", " ", "stringhe", " ", "da", " ", 
+          "\"\<TERRE DEL RENO\>\"", " ", "a", " ", "\"\<TerreDelReno\>\""}], 
+         ",", " ", 
+         RowBox[{"rendendole", " ", "utilizzabili", " ", "per", " ", 
+          RowBox[{"TravelDistance", "[", "]"}]}]}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"cityArbitro", " ", "=", " ", 
+        RowBox[{"StringDelete", "[", 
+         RowBox[{
+          RowBox[{"StringReplace", "[", 
+           RowBox[{
+            RowBox[{"ToLowerCase", "[", "cityArbitro", "]"}], ",", 
+            RowBox[{
+             RowBox[{"WordBoundary", "~~", "x_"}], "\[RuleDelayed]", 
+             RowBox[{"ToUpperCase", "[", "x", "]"}]}]}], "]"}], ",", 
+          "\"\< \>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"cityGara", " ", "=", " ", 
+        RowBox[{"StringDelete", "[", 
+         RowBox[{
+          RowBox[{"StringReplace", "[", 
+           RowBox[{
+            RowBox[{"ToLowerCase", "[", "cityGara", "]"}], ",", 
+            RowBox[{
+             RowBox[{"WordBoundary", "~~", "x_"}], "\[RuleDelayed]", 
+             RowBox[{"ToUpperCase", "[", "x", "]"}]}]}], "]"}], ",", 
+          "\"\< \>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Calcola", " ", "la", " ", "distanza", " ", "tra", " ", "la", " ", 
+         "citt\[AGrave]", " ", 
+         RowBox[{"dell", "'"}], "arbitro", " ", "e", " ", "la", " ", 
+         "citt\[AGrave]", " ", "della", " ", "gara"}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"distanceKm", " ", "=", " ", 
+        RowBox[{"TravelDistance", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Entity", "[", 
+             RowBox[{"\"\<City\>\"", ",", 
+              RowBox[{"{", 
+               RowBox[{
+               "cityArbitro", ",", "\"\<EmiliaRomagna\>\"", ",", 
+                "\"\<Italy\>\""}], "}"}]}], "]"}], ",", 
+            RowBox[{"Entity", "[", 
+             RowBox[{"\"\<City\>\"", ",", 
+              RowBox[{"{", 
+               RowBox[{
+               "cityGara", ",", "\"\<EmiliaRomagna\>\"", ",", 
+                "\"\<Italy\>\""}], "}"}]}], "]"}]}], "}"}], ",", 
+          RowBox[{"TravelMethod", "\[Rule]", "\"\<Driving\>\""}]}], "]"}]}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"distance", " ", "=", 
+        RowBox[{"QuantityMagnitude", "[", 
+         RowBox[{"IntegerPart", "[", "distanceKm", "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"probabilityDistance", " ", "=", " ", "1"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Diminuisce", " ", "la", " ", "probabilit\[AGrave]", " ", "al", " ", 
+         "crescere", " ", "della", " ", "distanza"}], " ", "*)"}], 
+       "\[IndentingNewLine]", " ", 
+       RowBox[{"probabilityDistance", " ", "-=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Between", "[", 
+           RowBox[{"distance", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", " ", "10"}], "}"}]}], "]"}], ",", " ", "0.05", 
+          ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+       RowBox[{"probabilityDistance", " ", "-=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Between", "[", 
+           RowBox[{"distance", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"11", ",", " ", "20"}], "}"}]}], "]"}], ",", " ", "0.10",
+           ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+       RowBox[{"probabilityDistance", " ", "-=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Between", "[", 
+           RowBox[{"distance", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"21", ",", " ", "40"}], "}"}]}], "]"}], ",", " ", "0.15",
+           ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+       RowBox[{"probabilityDistance", " ", "-=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Between", "[", 
+           RowBox[{"distance", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"41", ",", " ", "70"}], "}"}]}], "]"}], ",", " ", "0.20",
+           ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+       RowBox[{"probabilityDistance", " ", "-=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Between", "[", 
+           RowBox[{"distance", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"71", ",", " ", "100"}], "}"}]}], "]"}], ",", " ", 
+          "0.25", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+       RowBox[{"probabilityDistance", " ", "-=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Between", "[", 
+           RowBox[{"distance", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"101", ",", " ", "150"}], "}"}]}], "]"}], ",", " ", 
+          "0.30", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+       RowBox[{"probabilityDistance", " ", "-=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Between", "[", 
+           RowBox[{"distance", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"151", ",", " ", "250"}], "}"}]}], "]"}], ",", " ", 
+          "0.35", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+       RowBox[{"probabilityDistance", " ", "-=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Between", "[", 
+           RowBox[{"distance", ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"251", ",", " ", "999"}], "}"}]}], "]"}], ",", " ", 
+          "0.40", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{"3", " ", "-", " ", 
+         RowBox[{"GIORNO", " ", "SETTIMANA", " ", "e", " ", "ORARIO"}]}], " ",
+         "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"probabilityDayOfWeek", " ", "=", " ", "1"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"today", " ", "=", " ", 
+        RowBox[{"DateList", "[", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"birthDateArbitroSplitted", " ", "=", " ", 
+        RowBox[{"StringSplit", "[", 
+         RowBox[{"birthDateArbitro", ",", " ", "\"\</\>\""}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ageArbitroDay", " ", "=", " ", 
+        RowBox[{"DateDifference", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"birthDateArbitroSplitted", "[", 
+             RowBox[{"[", "3", "]"}], "]"}], ",", 
+            RowBox[{"birthDateArbitroSplitted", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], ",", 
+            RowBox[{"birthDateArbitroSplitted", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"today", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", 
+            RowBox[{"today", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], ",", 
+            RowBox[{"today", "[", 
+             RowBox[{"[", "3", "]"}], "]"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ageArbitro", "=", " ", 
+        RowBox[{"IntegerPart", "[", 
+         RowBox[{"ageArbitroDay", "/", "365"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"workingDays", " ", "=", " ", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Lun\>\"", ",", "\"\<Mar\>\"", ",", "\"\<Mer\>\"", ",", 
+          "\"\<Gio\>\"", ",", "\"\<Ven\>\""}], "}"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"probabilityDayOfWeek", " ", "=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"MemberQ", "[", 
+           RowBox[{"workingDays", ",", "dayOfWeekGara"}], "]"}], ",", " ", 
+          "0.7", ",", " ", "probabilityDayOfWeek"}], "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", 
+       RowBox[{"probabilityDayOfWeek", " ", "=", " ", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"ageArbitro", "\[GreaterEqual]", "25"}], " ", "&&", " ", 
+           RowBox[{"MemberQ", "[", 
+            RowBox[{"workingDays", ",", "dayOfWeekGara"}], "]"}]}], ",", " ", 
+          "0.2", ",", " ", "probabilityDayOfWeek"}], "]"}]}], ";", " ", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"probability", " ", "=", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"probbilityPast", " ", "*", " ", "0.5"}], ")"}], " ", "+", 
+         " ", 
+         RowBox[{"(", 
+          RowBox[{"probabilityDistance", " ", "*", " ", "0.25"}], ")"}], " ", 
+         "+", " ", 
+         RowBox[{"(", 
+          RowBox[{"probabilityDayOfWeek", " ", "*", " ", "0.25"}], ")"}]}]}], 
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "probability", "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Funzione", " ", "button", " ", "\"\<Scegli arbitro\>\""}], " ", 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"behaviorButtonsGare", "[", 
+      RowBox[{"selectedRowGara_", ",", " ", "selectedIdGara_"}], "]"}], ":=", 
+     "\[IndentingNewLine]", " ", 
+     RowBox[{"notebookArbitri", " ", "=", " ", 
+      RowBox[{"CreateDocument", "[", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"selectedIdGaraGlobal", " ", "=", " ", "selectedIdGara"}], 
+          ";"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"NotebookClose", "[", "notebookGare", "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Style", "[", 
+           RowBox[{"Arbitri", ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
+              RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
+             "}"}]}], " ", "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Panel", "[", 
+          RowBox[{
+           RowBox[{"TableForm", "[", "tableArbitriWithHeadings", "]"}], ",", 
+           "\"\<\>\"", ",", "Top", ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Frameless\>\""}]}], "]"}]}], 
+        "\[IndentingNewLine]", "}"}], "]"}]}]}], ";"}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Funzione", " ", "button", " ", "\"\<Designa arbitro\>\""}], " ", 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"behaviorButtonsArbitri", "[", 
+      RowBox[{"selectedRowArbitro_", ",", " ", "selectedIdArbitro_"}], "]"}], 
+     ":=", " ", "\[IndentingNewLine]", 
+     RowBox[{"notebookGare", " ", "=", " ", 
+      RowBox[{"CreateDocument", "[", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"NotebookClose", "[", "notebookArbitri", "]"}], ";"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"SQLExecute", "[", 
+           RowBox[{"connection", ",", 
+            RowBox[{
+            "\"\<DELETE FROM designazione WHERE IdGara = \>\"", " ", "<>", 
+             " ", 
+             RowBox[{"ToString", "[", "selectedIdGaraGlobal", "]"}]}]}], 
+           "]"}], ";", 
+          RowBox[{"SQLExecute", "[", 
+           RowBox[{"connection", ",", 
+            RowBox[{
+            "\"\<INSERT INTO designazione (IdTesserato, IdGara, \
+IdRuoloDesignazione, IdStatoDesignazione, DataOra) VALUES (\>\"", " ", "<>", 
+             " ", 
+             RowBox[{"ToString", "[", "selectedIdArbitro", "]"}], " ", "<>", 
+             " ", "\"\<, \>\"", " ", "<>", " ", 
+             RowBox[{"ToString", "[", "selectedIdGaraGlobal", "]"}], " ", "<>",
+              " ", "\"\<, 1, 2, NOW())\>\""}]}], "]"}], ";", 
+          "\[IndentingNewLine]", "fRefreshGare", ";", "\[IndentingNewLine]", 
+          RowBox[{"Style", "[", 
+           RowBox[{"Gare", ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
+              RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
+             "}"}]}], " ", "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Panel", "[", 
+          RowBox[{
+           RowBox[{"TableForm", "[", "tableGareWithHeadings", "]"}], ",", 
+           "\"\<\>\"", ",", "Top", ",", 
+           RowBox[{"Appearance", "\[Rule]", "\"\<Frameless\>\""}]}], "]"}]}], 
+        "\[IndentingNewLine]", "}"}], "]"}]}]}], ";"}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Aggiorna", " ", "tabella", " ", "arbitri"}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fRefreshArbitri", " ", ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Query", " ", "per", " ", "recuperare", " ", "la", " ", "tabella", 
+         " ", "dei", " ", "tesserati"}], " ", "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"dataArbitri", "=", 
+         RowBox[{"SQLExecute", "[", 
+          RowBox[{
+          "connection", ",", 
+           "\"\<SELECT tesserato.IdTesserato, tesserato.Tessera, \
+tesserato.Cognome, tesserato.Nome, CAST(SUM(CASE WHEN stato_designazione.Nome \
+IN ('Accettata', 'Trasmessa', 'Temporanea') THEN 1 ELSE 0 END) AS CHAR) AS \
+Accettate, CAST(SUM(CASE WHEN stato_designazione.Nome = 'Rifiutata' THEN 1 \
+ELSE 0 END) AS CHAR) AS Rifiutate, tesserato.Abilitazione, \
+DATE_FORMAT(tesserato.DataNascita, '%d/%m/%Y') AS 'Data di nascita', \
+DATE_FORMAT(tesserato.ScadenzaCertificatoMedico, '%d/%m/%Y') AS \
+ScadenzaCertificatoMedico, UPPER(tesserato.Citta) AS Citta FROM tesserato \
+LEFT JOIN designazione ON tesserato.IdTesserato = designazione.IdTesserato \
+LEFT JOIN stato_designazione ON designazione.IdStatoDesignazione = \
+stato_designazione.IdStatoDesignazione WHERE tesserato.IdGruppo = 2 AND \
+tesserato.Abilitato = 1 AND tesserato.Abilitazione IS NOT NULL AND \
+tesserato.ScadenzaCertificatoMedico IS NOT NULL AND tesserato.Citta IS NOT \
+NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome\>\""}], 
+          "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{"Colonna", " ", "bottoni", " ", "arbitri"}], " ", "*)"}], 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"buttonsArbitri", " ", "=", " ", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"With", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"x", "=", "x"}], "}"}], ",", 
+             RowBox[{"Button", "[", 
+              RowBox[{"\"\<Designa arbitro\>\"", ",", 
+               RowBox[{"behaviorButtonsArbitri", "[", 
+                RowBox[{
+                 RowBox[{"selectedRowArbitro", " ", "=", " ", "x"}], ",", " ", 
+                 RowBox[{"tableArbitri", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"selectedRowArbitro", ",", "2"}], "]"}], "]"}]}], 
+                "]"}]}], "]"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "1", ",", 
+             RowBox[{"Length", "[", "dataArbitri", "]"}]}], "}"}]}], "]"}]}], 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", 
+          "arbitri"}], " ", "*)"}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"enumerationArbitri", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"With", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"x", "=", "x"}], "}"}], ",", " ", "x"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "1", ",", 
+             RowBox[{"Length", "[", "dataArbitri", "]"}]}], "}"}]}], "]"}]}], 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"dayOfWeekGara", "=", 
+         RowBox[{"tableGare", "[", 
+          RowBox[{"selectedRowGara", ",", "6"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"timeGara", "=", 
+         RowBox[{"tableGare", "[", 
+          RowBox[{"selectedRowGara", ",", "8"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"cityGara", "=", 
+         RowBox[{"tableGare", "[", 
+          RowBox[{"selectedRowGara", ",", "12"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"probabilities", "=", 
+         RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"i", "=", "0"}], ",", 
+          RowBox[{"i", "<", " ", 
+           RowBox[{"Length", "[", "dataArbitri", "]"}]}], ",", 
+          RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"cityArbitro", "=", 
+            RowBox[{"tableArbitri", "[", 
+             RowBox[{"selectedRowArbitro", ",", "10"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"birthDateArbitro", "=", 
+            RowBox[{"tableArbitri", "[", 
+             RowBox[{"selectedRowArbitro", ",", "7"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"acceptedArbitro", "=", 
+            RowBox[{"tableArbitri", "[", 
+             RowBox[{"selectedRowArbitro", ",", "10"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"refusedArbitro", "=", 
+            RowBox[{"tableArbitri", "[", 
+             RowBox[{"selectedRowArbitro", ",", "11"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"probability", "=", 
+            RowBox[{"fGetProbability", "[", 
+             RowBox[{
+             "cityArbitro", ",", "birthDateArbitro", ",", " ", 
+              "acceptedArbitro", ",", " ", "refusedArbitro", ",", " ", 
+              "dayOfWeekGara", ",", " ", "timeGara", ",", "  ", "cityGara"}], 
+             "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"Print", "[", "i", "]"}], ";"}], "*)"}], 
+           "\[IndentingNewLine]", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"probabilities", ",", 
+             RowBox[{"{", "i", "}"}]}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"Print", "[", "probabilities", "]"}], ";"}], "*)"}], 
+         "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Unione", " ", "tabella", " ", "arbitri", " ", "con", " ", "colonne",
+           " ", "numeri", " ", "righe", " ", "arbitri", " ", "e", " ", 
+          "bottoni", " ", "arbitri"}], " ", "*)"}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tableArbitri", "=", 
+         RowBox[{"Transpose", "@", 
+          RowBox[{"Join", "[", 
+           RowBox[{
+            RowBox[{"{", "enumerationArbitri", " ", "}"}], ",", " ", 
+            RowBox[{"Transpose", "@", "dataArbitri"}], " ", ",", 
+            RowBox[{"{", "probabilities", "}"}], ",", 
+            RowBox[{"{", "buttonsArbitri", " ", "}"}]}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Aggiunta", " ", "intestazione", " ", "tabella", " ", "arbitri"}], 
+         " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"listHeadingArbitri", "=", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<N\[Degree]\>\"", ",", "\"\<Id\>\"", ",", "\"\<Tessera\>\"", 
+           ",", "\"\<Cognome\>\"", ",", "\"\<Nome\>\"", ",", 
+           "\"\<Accettate\>\"", ",", "\"\<Rifiutate\>\"", ",", 
+           "\"\<Categoria\>\"", ",", "\"\<Data di nascita\>\"", ",", 
+           "\"\<Cert. medico\>\"", ",", "\"\<Citt\[AGrave]\>\"", ",", 
+           "\"\<Probabilit\[AGrave] di accettare\>\"", ",", 
+           "\"\<Azione\>\""}], "}"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tableArbitriWithHeadings", "=", 
+         RowBox[{"Prepend", "[", 
+          RowBox[{"tableArbitri", ",", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"#", ",", " ", "Bold"}], "]"}], "&"}], ",", 
+             "listHeadingArbitri"}], "]"}]}], "]"}]}], ";"}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Aggiorna", " ", "tabella", " ", "gare"}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fRefreshGare", " ", ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Query", " ", "per", " ", "recuperare", " ", "la", " ", "tabella", 
+         " ", "delle", " ", "gare"}], " ", "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"dataGare", "=", 
+         RowBox[{"SQLExecute", "[", 
+          RowBox[{
+          "connection", ",", 
+           "\"\<SELECT gara.IdGara, gara.Numero, campionato.Sigla AS \
+Campionato, girone.Girone, gara.GiornoSettimana AS Giorno, \
+DATE_FORMAT(gara.Data, '%d/%m/%Y') AS Data, DATE_FORMAT(gara.Ora, '%H:%i') AS \
+Ora, squadra_a.Nome AS 'Squadra A', squadra_b.Nome AS 'Squadra B', \
+campo_di_gioco.Campo, campo_di_gioco.Comune, campo_di_gioco.Provincia, \
+IFNULL(CONCAT(tesserato.Cognome, ' ', SUBSTRING(tesserato.Nome, 1, 1), '.'), \
+'-') AS Arbitro FROM gara LEFT JOIN campionato ON gara.IdCampionato = \
+campionato.IdCampionato LEFT JOIN campo_di_gioco ON gara.IdCampoDiGioco = \
+campo_di_gioco.IdCampoDiGioco LEFT JOIN squadra squadra_a ON gara.IdSquadraA \
+= squadra_a.IdSquadra LEFT JOIN squadra squadra_b ON gara.IdSquadraB = \
+squadra_b.IdSquadra LEFT JOIN girone ON gara.IdGirone = girone.IdGirone LEFT \
+JOIN designazione ON gara.IdGara = designazione.IdGara LEFT JOIN tesserato ON \
+designazione.IdTesserato = tesserato.IdTesserato WHERE gara.IdGruppo = 2 AND \
+gara.IdAnnoSportivo = 1 AND campo_di_gioco.Campo IS NOT NULL AND gara.Data IS \
+NOT NULL AND gara.IdGirone IS NOT NULL ORDER BY gara.Data, gara.Ora, \
+gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
+1000 \>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{"Colonna", " ", "bottoni", " ", "gare"}], " ", "*)"}], 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"buttonsGare", " ", "=", " ", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"With", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"i", "=", "i"}], "}"}], ",", 
+             RowBox[{"Button", "[", 
+              RowBox[{"\"\<Scegli arbitro\>\"", ",", 
+               RowBox[{"behaviorButtonsGare", "[", 
+                RowBox[{
+                 RowBox[{"selectedRowGara", " ", "=", " ", "i"}], ",", " ", 
+                 RowBox[{"tableGare", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"selectedRowGara", ",", "2"}], "]"}], "]"}]}], 
+                "]"}]}], "]"}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "1", ",", 
+             RowBox[{"Length", "[", "dataGare", "]"}]}], "}"}]}], "]"}]}], 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", 
+          "gare"}], " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"enumerationGare", "=", " ", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"With", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"x", "=", "x"}], "}"}], ",", " ", "x"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "1", ",", 
+             RowBox[{"Length", "[", "dataGare", "]"}]}], "}"}]}], "]"}]}], 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Unione", " ", "tabella", " ", "gare", " ", "con", " ", "colonne", 
+          " ", "numeri", " ", "righe", " ", "gare", " ", "e", " ", "bottoni", 
+          " ", "gare"}], " ", "*)"}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"tableGare", " ", "=", 
+         RowBox[{"Transpose", "@", 
+          RowBox[{"Join", "[", 
+           RowBox[{
+            RowBox[{"{", "enumerationGare", " ", "}"}], ",", " ", 
+            RowBox[{"Transpose", "@", "dataGare"}], " ", ",", 
+            RowBox[{"{", "buttonsGare", " ", "}"}]}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Aggiunta", " ", "intestazione", " ", "tabella", " ", "gare"}], " ", 
+         "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"listHeadingGare", " ", "=", " ", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<N\[Degree]\>\"", ",", "\"\<Id\>\"", ",", "\"\<Numero\>\"", 
+           ",", "\"\<Campionato\>\"", ",", "\"\<Girone\>\"", ",", 
+           "\"\<Giorno\>\"", ",", "\"\<Data\>\"", ",", "\"\<Ora\>\"", ",", 
+           "\"\<Squadra A\>\"", ",", "\"\<Squadra B\>\"", ",", 
+           "\"\<Campo\>\"", ",", "\"\<Comune\>\"", ",", "\"\<Provincia\>\"", 
+           ",", "\"\<Arbitro\>\"", ",", "\"\<Azione\>\""}], "}"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"tableGareWithHeadings", "=", 
+         RowBox[{"Prepend", "[", 
+          RowBox[{"tableGare", ",", 
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Style", "[", 
+               RowBox[{"#", ",", " ", "Bold"}], "]"}], "&"}], ",", 
+             "listHeadingGare"}], "]"}]}], "]"}]}], ";"}]}], 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fStart", ":=", " ", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       
+       RowBox[{"(*", " ", 
+        RowBox[{"Connssione", " ", "al", " ", "database"}], " ", "*)"}], 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"JDBCDrivers", "[", "\"\<MySQL(Connector/J)\>\"", "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"connection", "=", 
+         RowBox[{"OpenSQLConnection", "[", 
+          RowBox[{
+           RowBox[{"JDBC", "[", 
+            RowBox[{
+            "\"\<MySQL(Connector/J)\>\"", ",", 
+             "\"\<127.0.0.1:3306/designazioni\>\""}], "]"}], ",", 
+           RowBox[{"\"\<Username\>\"", "\[Rule]", "\"\<root\>\""}], ",", 
+           RowBox[{"\"\<Password\>\"", "\[Rule]", "\"\<\>\""}]}], "]"}]}], 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Aggiorna", " ", "tabelle", " ", "arbitri", " ", "e", " ", "gare"}], 
+         " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "fRefreshArbitri", ";", "\[IndentingNewLine]", "fRefreshGare", ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "Cra", " ", "il", " ", "notebook", " ", "gare", " ", "iniziale"}], 
+         " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"notebookGare", " ", "=", " ", 
+         RowBox[{"CreateDocument", "[", 
+          RowBox[{"{", "\[IndentingNewLine]", 
+           RowBox[{"\"\<\>\"", ",", " ", "\[IndentingNewLine]", 
+            RowBox[{"Style", "[", 
+             RowBox[{"Gare", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
+                RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
+               "}"}]}], " ", "]"}], ",", 
+            RowBox[{"Panel", "[", 
+             RowBox[{
+              RowBox[{"TableForm", "[", "tableGareWithHeadings", "]"}], ",", 
+              "\"\<\>\"", ",", "Top", ",", 
+              RowBox[{"Appearance", "\[Rule]", "\"\<Frameless\>\""}]}], 
+             "]"}]}], "}"}], "]"}]}], ";"}]}], "\[IndentingNewLine]", "]"}]}],
+     ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Output", " ", "schermata", " ", "iniziale"}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{"Designazioni", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
+       RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], "}"}]}], " ",
+     "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Button", "[", 
+    RowBox[{"\"\<Visualizza gare\>\"", ",", "fStart"}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+     "Premere", " ", "nel", " ", "menu", " ", "su", " ", 
+      "\"\<Evaluation\>\""}], " ", ">", " ", 
+     RowBox[{
+      RowBox[{"\"\<Evaluate Notebook\>\"", ".", " ", "Successivamente"}], " ",
+       "premere", " ", "sul", " ", "bottone", " ", 
+      RowBox[{"\"\<Visualizza gare\>\"", "."}]}]}], " ", "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.7669034882796173`*^9, 3.766903496323134*^9}, 
+   3.766903539620253*^9, {3.766903742184678*^9, 3.7669038180336933`*^9}, {
+   3.766903860894856*^9, 3.7669039044774323`*^9}, {3.7669043583833447`*^9, 
+   3.766904397016842*^9}, {3.7669044418388243`*^9, 3.766904453208626*^9}, 
+   3.766904485679923*^9, {3.76690453795639*^9, 3.766904541665675*^9}, {
+   3.766904590403652*^9, 3.766904592648926*^9}, {3.766904733989397*^9, 
+   3.766904739421254*^9}, 3.766904794045445*^9, {3.7669048590780563`*^9, 
+   3.766904912087682*^9}, 3.766905043257814*^9, 3.766905341299556*^9, {
+   3.766906759949316*^9, 3.76690680459858*^9}, 3.7669068825890503`*^9, 
+   3.766907110931548*^9, {3.766907210035008*^9, 3.766907252813209*^9}, {
+   3.766907295958993*^9, 3.766907337607321*^9}, {3.766915803111343*^9, 
+   3.7669158063673697`*^9}, {3.766916009652522*^9, 3.766916011428576*^9}, {
+   3.766916090303215*^9, 3.7669160916541777`*^9}, {3.766916266428508*^9, 
+   3.766916285650116*^9}, 3.7669163848828773`*^9, 3.766916437060688*^9, 
+   3.76691647319165*^9, {3.766916668361051*^9, 3.766916729713482*^9}, 
+   3.766917810137781*^9, {3.766917923555553*^9, 3.766917925985928*^9}, 
+   3.766917987574203*^9, 3.766918058263915*^9, {3.7669183357454853`*^9, 
+   3.766918336821204*^9}, {3.766918465282069*^9, 3.766918466588471*^9}, {
+   3.766918585044402*^9, 3.7669185906027107`*^9}, 3.76691896891164*^9, {
+   3.766919254990992*^9, 3.766919256410796*^9}, 3.766920162418523*^9, 
+   3.766921234216887*^9, {3.7669213146888742`*^9, 3.76692131593176*^9}, {
+   3.7669217038161583`*^9, 3.766921707696892*^9}, 3.766921748585512*^9, {
+   3.7669219991918373`*^9, 3.766922032384091*^9}, {3.766922315174686*^9, 
+   3.766922317487471*^9}, 3.7669223703330393`*^9, {3.766922619616123*^9, 
+   3.766922674210793*^9}, {3.7669227630222197`*^9, 3.76692277508541*^9}, {
+   3.766922848457676*^9, 3.766922850335444*^9}, {3.766922884337741*^9, 
+   3.7669228875194798`*^9}, {3.7669229709381323`*^9, 
+   3.7669229761056547`*^9}, {3.766923231647127*^9, 3.766923250033976*^9}, {
+   3.766923299577354*^9, 3.766923309727845*^9}, 3.766923389371993*^9, 
+   3.766923426155079*^9, {3.7669234944354362`*^9, 3.7669235594363823`*^9}, {
+   3.766923595869877*^9, 3.7669235977977343`*^9}, {3.766923651871585*^9, 
+   3.7669236725939417`*^9}, {3.766923715418273*^9, 3.766923781753621*^9}, 
+   3.766923841580035*^9, {3.76692458763332*^9, 3.766924639894154*^9}, {
+   3.766924932012385*^9, 3.766924955948049*^9}, {3.766925006196756*^9, 
+   3.766925009507073*^9}, {3.766925750564926*^9, 3.7669257619637127`*^9}, {
+   3.7669258019656353`*^9, 3.766925803221456*^9}, {3.766925836839712*^9, 
+   3.766925837429744*^9}, {3.766925981704425*^9, 3.766926017152916*^9}, {
+   3.766926361610615*^9, 3.766926381097455*^9}, {3.766986795378413*^9, 
+   3.766986808706676*^9}, {3.7669869025907097`*^9, 3.766986903069466*^9}, {
+   3.7669869591514893`*^9, 3.766986963023181*^9}, {3.7669874775406*^9, 
+   3.766987480008729*^9}, {3.766987625175089*^9, 3.766987627614749*^9}, {
+   3.7669885049903173`*^9, 3.76698852805274*^9}, {3.7669885613354187`*^9, 
+   3.76698857755777*^9}, {3.766988609479999*^9, 3.766988617389985*^9}, 
+   3.7669886584407387`*^9, {3.7669886952334003`*^9, 3.76698869726379*^9}, {
+   3.766988733129467*^9, 3.76698885179748*^9}, {3.766988944545516*^9, 
+   3.766989037903322*^9}, {3.766989166944397*^9, 3.7669892429047613`*^9}, {
+   3.7669893354897118`*^9, 3.7669893749936743`*^9}, {3.766989443491104*^9, 
+   3.766989500827841*^9}, {3.766989653281694*^9, 3.7669896619745007`*^9}, 
+   3.766989694487384*^9, {3.7669898876040077`*^9, 3.766989894130835*^9}, {
+   3.766990067675001*^9, 3.766990099311359*^9}, {3.766990216446433*^9, 
+   3.7669902355150023`*^9}, {3.7669902976128483`*^9, 
+   3.7669903456709337`*^9}, {3.76699053266707*^9, 3.766990537441905*^9}, {
+   3.766990865726955*^9, 3.7669908715483627`*^9}, {3.7669909183031588`*^9, 
+   3.7669909260855627`*^9}, {3.7669909687122*^9, 3.766991000360468*^9}, {
+   3.766991063793707*^9, 3.766991064920621*^9}, {3.766991184481304*^9, 
+   3.766991188470401*^9}, {3.7669912341112003`*^9, 3.7669912669628563`*^9}, {
+   3.7669915289917316`*^9, 3.766991602011228*^9}, {3.7669918079263906`*^9, 
+   3.766991809029084*^9}, {3.766991960848765*^9, 3.7669920049614983`*^9}, 
+   3.766992093682543*^9, {3.7669921703652067`*^9, 3.766992172411953*^9}, 
+   3.7669923596240587`*^9, {3.7669924502014437`*^9, 3.766992487886911*^9}, {
+   3.7669925466046877`*^9, 3.7669925682240458`*^9}, {3.766992702745878*^9, 
+   3.766992799799642*^9}, 3.766992861353486*^9, {3.7669929031455803`*^9, 
+   3.7669929685787287`*^9}, {3.7669930953500557`*^9, 3.766993105341474*^9}, {
+   3.766993158671029*^9, 3.766993221112603*^9}, {3.766993287058786*^9, 
+   3.7669932958100758`*^9}, {3.766993349203833*^9, 3.766993366578549*^9}, {
+   3.7669934195499697`*^9, 3.7669934361877203`*^9}, {3.766993508870528*^9, 
+   3.7669935688144083`*^9}, {3.766993702880108*^9, 3.766993704746869*^9}, {
+   3.766993744030357*^9, 3.7669937509236298`*^9}, {3.766993823569993*^9, 
+   3.76699385478612*^9}, {3.7669993834774303`*^9, 3.76699950424536*^9}, {
+   3.766999730365171*^9, 3.7669997806547337`*^9}, {3.7669998170481358`*^9, 
+   3.7669998177992764`*^9}, {3.7670001035464277`*^9, 3.767000107252426*^9}, {
+   3.767000364232112*^9, 3.7670003784493427`*^9}, {3.7670004550176163`*^9, 
+   3.767000456682118*^9}, {3.7670005517318*^9, 3.76700061168226*^9}, {
+   3.76700075355241*^9, 3.767000774935285*^9}, 3.767000950006714*^9, {
+   3.767001000497889*^9, 3.767001044202567*^9}, {3.767001078643724*^9, 
+   3.76700115451897*^9}, {3.7670011985348454`*^9, 3.767001206236436*^9}, {
+   3.76700125551161*^9, 3.767001370993121*^9}, {3.767001488932205*^9, 
+   3.767001493267127*^9}, {3.767001541540278*^9, 3.76700155445935*^9}, {
+   3.76700160410703*^9, 3.767001643715394*^9}, {3.76700168434228*^9, 
+   3.767001686212888*^9}, {3.767001729623218*^9, 3.767001730085557*^9}, {
+   3.767001794154162*^9, 3.767001796019651*^9}, {3.767001829260765*^9, 
+   3.767001838468697*^9}, {3.7670018773011913`*^9, 3.767002002925549*^9}, {
+   3.767002065417021*^9, 3.767002241159197*^9}, {3.7670022730858927`*^9, 
+   3.7670023575102787`*^9}, {3.767002594652169*^9, 3.767002620769722*^9}, {
+   3.767002985419258*^9, 3.7670030045770283`*^9}, {3.767004273767099*^9, 
+   3.767004311424644*^9}, {3.767004454372917*^9, 3.7670044590442944`*^9}, {
+   3.7670045116380587`*^9, 3.7670045311310797`*^9}, {3.7670047042166843`*^9, 
+   3.767004743686411*^9}, {3.767004874776363*^9, 3.767004876521411*^9}, {
+   3.767004965785592*^9, 3.76700496628961*^9}, {3.7670050029730186`*^9, 
+   3.7670050072753*^9}, {3.767005049442704*^9, 3.767005104797884*^9}, {
+   3.767005174164998*^9, 3.7670051760119467`*^9}, {3.767005211901372*^9, 
+   3.767005248079007*^9}, {3.7670053691037073`*^9, 3.767005380642109*^9}, {
+   3.767005512633353*^9, 3.7670055712541847`*^9}, 3.7670078302539587`*^9, {
+   3.767008006459401*^9, 3.7670080067214947`*^9}, {3.767008116617034*^9, 
+   3.767008174645213*^9}, {3.767008219811223*^9, 3.76700827409798*^9}, {
+   3.767008339110207*^9, 3.767008339117977*^9}, {3.767008396778463*^9, 
+   3.767008396786524*^9}, {3.7670084361315737`*^9, 3.767008469879257*^9}, {
+   3.7670085366862707`*^9, 3.76700853670333*^9}, {3.767068233044569*^9, 
+   3.767068233067458*^9}, {3.767068280024115*^9, 3.767068302020816*^9}, {
+   3.767068371566319*^9, 3.767068371588757*^9}, {3.767068431214376*^9, 
+   3.767068431264153*^9}, {3.767068538222313*^9, 3.767068538229753*^9}, {
+   3.767068604111697*^9, 3.767068699113317*^9}, {3.767068748143002*^9, 
+   3.767068771620459*^9}, {3.767068830215452*^9, 3.767068845318296*^9}, {
+   3.767068903862398*^9, 3.76706891204041*^9}, {3.7670690147428293`*^9, 
+   3.767069014752542*^9}, {3.767069101111211*^9, 3.767069101135891*^9}, {
+   3.7670691347373047`*^9, 3.76706914524343*^9}, {3.7670691753383217`*^9, 
+   3.7670691934370413`*^9}, {3.767069240050989*^9, 3.767069269214077*^9}, {
+   3.767069325412709*^9, 3.7670693503215513`*^9}, {3.7670694021389933`*^9, 
+   3.767069426227182*^9}, {3.767069536960587*^9, 3.7670695369689007`*^9}, {
+   3.7670701435695257`*^9, 3.767070157849004*^9}, {3.767070212098588*^9, 
+   3.767070212131545*^9}, {3.767070577008019*^9, 3.7670705775005302`*^9}, {
+   3.767070607886024*^9, 3.767070607894875*^9}, {3.767070848165226*^9, 
+   3.767070913813933*^9}, {3.7670710629276047`*^9, 3.767071062939774*^9}, {
+   3.76707110452069*^9, 3.7670712569740467`*^9}, {3.767071300192911*^9, 
+   3.767071301577221*^9}, {3.76707134734895*^9, 3.767071369193783*^9}, {
+   3.767071572161914*^9, 3.767071572170134*^9}, {3.767071691193141*^9, 
+   3.767071724856223*^9}, {3.76707176610187*^9, 3.767071766545306*^9}, {
+   3.767072147420061*^9, 3.767072169200102*^9}, {3.767072317027583*^9, 
+   3.7670724053496103`*^9}, {3.767072471849003*^9, 3.767072478398835*^9}, {
+   3.767072654031262*^9, 3.767072661790667*^9}, {3.7670727337862577`*^9, 
+   3.767072738017416*^9}, {3.767073234842758*^9, 3.767073235044598*^9}, {
+   3.7670732822881823`*^9, 3.767073282588996*^9}, {3.767076189584826*^9, 
+   3.767076190143956*^9}, {3.7670765661684113`*^9, 3.767076579947711*^9}, 
+   3.767076611206599*^9, {3.767077357002508*^9, 3.767077365973502*^9}, {
+   3.767077404598423*^9, 3.767077430037635*^9}, {3.767077472287745*^9, 
+   3.767077545856227*^9}, {3.767077607113936*^9, 3.767077620218408*^9}, {
+   3.767078060696681*^9, 3.7670780689784937`*^9}, {3.767078152437809*^9, 
+   3.767078237689146*^9}, {3.767078276521963*^9, 3.7670783097373447`*^9}, {
+   3.767078365297987*^9, 3.7670784244367867`*^9}, 3.767078462766708*^9, {
+   3.767078690807891*^9, 3.767078706574752*^9}, {3.767079552007516*^9, 
+   3.767079584788784*^9}, {3.767079671177931*^9, 3.767079685817007*^9}, {
+   3.7670797218194942`*^9, 3.767079724341853*^9}, {3.767079805766996*^9, 
+   3.767079910799477*^9}, {3.767080219715115*^9, 3.7670802207159357`*^9}, {
+   3.767080406941543*^9, 3.76708040961817*^9}, {3.767085744690889*^9, 
+   3.767085750831972*^9}, {3.767085795641068*^9, 3.767085875243744*^9}, 
+   3.767086279145463*^9, {3.7670864261058207`*^9, 3.767086469900117*^9}, {
+   3.767086591317017*^9, 3.7670866769027643`*^9}, {3.7670867134108763`*^9, 
+   3.767086757026506*^9}, {3.767086914668708*^9, 3.7670871729401617`*^9}, {
+   3.767087407446039*^9, 3.76708740804783*^9}, {3.767087482233745*^9, 
+   3.767087528864311*^9}, {3.767087581955286*^9, 3.7670875835159683`*^9}, {
+   3.767087621892972*^9, 3.7670877194616413`*^9}, {3.7670877548155107`*^9, 
+   3.767087754983404*^9}, {3.767087820397423*^9, 3.7670878403698463`*^9}, {
+   3.767087912194146*^9, 3.767087946083919*^9}, {3.767087999518058*^9, 
+   3.767088007899726*^9}, {3.76708804383014*^9, 3.767088144832321*^9}, 
+   3.7670881923425407`*^9, {3.767089012795733*^9, 3.767089015806567*^9}, {
+   3.7670897697119703`*^9, 3.767089770831064*^9}, 3.7670903127924557`*^9, 
+   3.767090363174243*^9, {3.7670903976517897`*^9, 3.767090567498721*^9}, {
+   3.767090617950116*^9, 3.7670906422855062`*^9}, {3.767090679550701*^9, 
+   3.767090763239707*^9}, {3.7670908046341677`*^9, 3.767090804896287*^9}, {
+   3.767090862075618*^9, 3.767090882118205*^9}, {3.7670909149553337`*^9, 
+   3.767090953176333*^9}, {3.767091161688542*^9, 3.7670911858019323`*^9}, {
+   3.767091252412675*^9, 3.767091267772524*^9}, {3.767091305317927*^9, 
+   3.7670913339823027`*^9}, {3.7670914094565573`*^9, 3.767091448879745*^9}, {
+   3.767091513748732*^9, 3.767091595508431*^9}, {3.7670916451950827`*^9, 
+   3.7670916465910873`*^9}, {3.767091722974407*^9, 3.767091740072319*^9}, {
+   3.767091969047572*^9, 3.767091970533841*^9}, {3.767092000646806*^9, 
+   3.767092010048661*^9}, {3.76709207836064*^9, 3.767092092536261*^9}, {
+   3.767092156617077*^9, 3.767092274876423*^9}, {3.767092369754203*^9, 
+   3.767092375482019*^9}, {3.7670924148663597`*^9, 3.7670924974986753`*^9}, {
+   3.767094881044321*^9, 3.7670949405967503`*^9}, {3.767094997132827*^9, 
+   3.7670950572216187`*^9}, {3.767097369088209*^9, 3.767097370678851*^9}, {
+   3.767097416384075*^9, 3.7670974408799763`*^9}, {3.767097555392569*^9, 
+   3.7670975803469763`*^9}, {3.7670976163523493`*^9, 3.767097653047201*^9}, {
+   3.7670976990585203`*^9, 3.767097805011689*^9}, {3.767097842879649*^9, 
+   3.767097844433531*^9}, {3.7670979274548407`*^9, 3.767097949920067*^9}, {
+   3.767097987673476*^9, 3.7670980391934853`*^9}, {3.767098109004766*^9, 
+   3.767098109434402*^9}, {3.767098151943508*^9, 3.767098228606353*^9}, {
+   3.767098273464191*^9, 3.767098275887038*^9}, {3.767098319041597*^9, 
+   3.767098327049528*^9}, 3.7670983734666357`*^9, {3.7670984040916243`*^9, 
+   3.767098442546115*^9}, {3.767098508961793*^9, 3.767098510318227*^9}, {
+   3.7670985884547977`*^9, 3.767098638167235*^9}, {3.767098678705309*^9, 
+   3.7670986822916117`*^9}, {3.767098949911524*^9, 3.767098951064392*^9}, {
+   3.767099008040778*^9, 3.767099010297057*^9}, 3.767099150954357*^9, 
+   3.7670991864195423`*^9, {3.767099358689827*^9, 3.767099380353603*^9}, {
+   3.7670994551974993`*^9, 3.767099502477219*^9}, {3.767099614057365*^9, 
+   3.767099701098794*^9}, {3.767099782277372*^9, 3.767099785108768*^9}, {
+   3.7670999171151223`*^9, 3.7671000302587547`*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+
+Cell[BoxData[
+ StyleBox["Designazioni",
+  StripOnInput->False,
+  FontFamily->"Helvetica",
+  FontSize->30]], "Output",
+ CellChangeTimes->{
+  3.767087952262484*^9, 3.767088011365491*^9, 3.767088150717236*^9, 
+   3.767091228254244*^9, 3.7670912725260353`*^9, 3.767091312987719*^9, 
+   3.767091346416069*^9, {3.7670914690262213`*^9, 3.767091494450818*^9}, {
+   3.7670915472638083`*^9, 3.767091567334464*^9}, 3.767091605818039*^9, {
+   3.767091649971623*^9, 3.767091674842848*^9}, 3.767091743697053*^9, 
+   3.767091943617941*^9, 3.767091976199786*^9, 3.7670920137170477`*^9, 
+   3.767092048188303*^9, {3.767092176877985*^9, 3.7670921947317677`*^9}, 
+   3.767092286460623*^9, 3.7670923829439983`*^9, 3.767092434070115*^9, {
+   3.767092483446046*^9, 3.767092500359886*^9}, 3.767095562392908*^9, 
+   3.767097851003145*^9, {3.767097963479044*^9, 3.767098009376745*^9}, 
+   3.767098043649928*^9, {3.7670981702839527`*^9, 3.7670982324287243`*^9}, 
+   3.7670982824136553`*^9, 3.767098340658309*^9, {3.767098376764161*^9, 
+   3.7670984054525127`*^9}, 3.7670985234721813`*^9, 3.767098568521843*^9, 
+   3.767098647742222*^9, 3.767098686404252*^9, 3.76709896961101*^9, 
+   3.767099014834462*^9, 3.7670991577179956`*^9, 3.767099192536848*^9, 
+   3.7670993901068783`*^9, 3.767099476071412*^9, 3.7670995580355263`*^9, 
+   3.767099646164324*^9, 3.767099704920236*^9, 3.767099788349923*^9, {
+   3.76710006076943*^9, 3.767100067145116*^9}},
+ CellLabel->"Out[19]=",ExpressionUUID->"88086e5a-b5ab-492d-b39a-15629e975b9e"],
+
+Cell[BoxData[
+ ButtonBox["\<\"Visualizza gare\"\>",
+  Appearance->Automatic,
+  ButtonFunction:>$CellContext`fStart,
+  Evaluator->Automatic,
+  Method->"Preemptive"]], "Output",
+ CellChangeTimes->{
+  3.767087952262484*^9, 3.767088011365491*^9, 3.767088150717236*^9, 
+   3.767091228254244*^9, 3.7670912725260353`*^9, 3.767091312987719*^9, 
+   3.767091346416069*^9, {3.7670914690262213`*^9, 3.767091494450818*^9}, {
+   3.7670915472638083`*^9, 3.767091567334464*^9}, 3.767091605818039*^9, {
+   3.767091649971623*^9, 3.767091674842848*^9}, 3.767091743697053*^9, 
+   3.767091943617941*^9, 3.767091976199786*^9, 3.7670920137170477`*^9, 
+   3.767092048188303*^9, {3.767092176877985*^9, 3.7670921947317677`*^9}, 
+   3.767092286460623*^9, 3.7670923829439983`*^9, 3.767092434070115*^9, {
+   3.767092483446046*^9, 3.767092500359886*^9}, 3.767095562392908*^9, 
+   3.767097851003145*^9, {3.767097963479044*^9, 3.767098009376745*^9}, 
+   3.767098043649928*^9, {3.7670981702839527`*^9, 3.7670982324287243`*^9}, 
+   3.7670982824136553`*^9, 3.767098340658309*^9, {3.767098376764161*^9, 
+   3.7670984054525127`*^9}, 3.7670985234721813`*^9, 3.767098568521843*^9, 
+   3.767098647742222*^9, 3.767098686404252*^9, 3.76709896961101*^9, 
+   3.767099014834462*^9, 3.7670991577179956`*^9, 3.767099192536848*^9, 
+   3.7670993901068783`*^9, 3.767099476071412*^9, 3.7670995580355263`*^9, 
+   3.767099646164324*^9, 3.767099704920236*^9, 3.767099788349923*^9, {
+   3.76710006076943*^9, 3.767100067154044*^9}},
+ CellLabel->"Out[20]=",ExpressionUUID->"eb9d85d8-411b-4d95-a550-fb353831bbce"]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 46093, 889, 3981, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+Cell[46676, 913, 1497, 24, 52, "Output",ExpressionUUID->"88086e5a-b5ab-492d-b39a-15629e975b9e"],
+Cell[48176, 939, 1555, 25, 44, "Output",ExpressionUUID->"eb9d85d8-411b-4d95-a550-fb353831bbce"]
+}, Open  ]]
+}
+]
+*)
+
