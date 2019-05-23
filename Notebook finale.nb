@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     51203,       1005]
-NotebookOptionsPosition[     50682,        988]
-NotebookOutlinePosition[     51024,       1003]
-CellTagsIndexPosition[     50981,       1000]
+NotebookDataLength[     52565,       1030]
+NotebookOptionsPosition[     52042,       1013]
+NotebookOutlinePosition[     52385,       1028]
+CellTagsIndexPosition[     52342,       1025]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -414,6 +414,30 @@ tesserato.Abilitato = 1 AND tesserato.Abilitazione IS NOT NULL AND \
 tesserato.ScadenzaCertificatoMedico IS NOT NULL AND tesserato.Citta IS NOT \
 NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT 10 \
 \>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", 
+         "arbitri"}], " ", "*)"}], "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"enumerationArbitri", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"With", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"x", "=", "x"}], "}"}], ",", " ", "x"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "1", ",", 
+            RowBox[{"Length", "[", "dataArbitri", "]"}]}], "}"}]}], "]"}]}], 
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"tableArbitri", "=", 
+        RowBox[{"Transpose", "@", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "enumerationArbitri", " ", "}"}], ",", " ", 
+           RowBox[{"Transpose", "@", "dataArbitri"}]}], "]"}]}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{"Colonna", " ", "bottoni", " ", "arbitri"}], " ", "*)"}], 
        "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -434,22 +458,6 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT 10 \
                  RowBox[{"[", 
                   RowBox[{"selectedRowArbitroGlobal", ",", "2"}], "]"}], 
                  "]"}]}], "]"}]}], "]"}]}], "]"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"x", ",", "1", ",", 
-            RowBox[{"Length", "[", "dataArbitri", "]"}]}], "}"}]}], "]"}]}], 
-       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"(*", " ", 
-        RowBox[{
-        "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", 
-         "arbitri"}], " ", "*)"}], "\[IndentingNewLine]", 
-       "\[IndentingNewLine]", 
-       RowBox[{"enumerationArbitri", "=", 
-        RowBox[{"Table", "[", 
-         RowBox[{
-          RowBox[{"With", "[", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{"x", "=", "x"}], "}"}], ",", " ", "x"}], "]"}], ",", 
           RowBox[{"{", 
            RowBox[{"x", ",", "1", ",", 
             RowBox[{"Length", "[", "dataArbitri", "]"}]}], "}"}]}], "]"}]}], 
@@ -554,10 +562,9 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT 10 \
         RowBox[{"Transpose", "@", 
          RowBox[{"Join", "[", 
           RowBox[{
-           RowBox[{"{", "enumerationArbitri", " ", "}"}], ",", " ", 
-           RowBox[{"Transpose", "@", "dataArbitri"}], " ", ",", 
+           RowBox[{"Transpose", "@", "tableArbitri"}], ",", 
            RowBox[{"{", "probabilities", "}"}], ",", 
-           RowBox[{"{", "buttonsArbitri", " ", "}"}]}], "]"}]}]}], ";", 
+           RowBox[{"{", "buttonsArbitri", "}"}]}], "]"}]}]}], ";", 
        "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{
@@ -618,6 +625,28 @@ NOT NULL AND gara.IdGirone IS NOT NULL ORDER BY gara.Data, gara.Ora, \
 gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
 10 \>\""}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
+        RowBox[{
+        "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", "gare"}],
+         " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"enumerationGare", "=", " ", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"With", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"x", "=", "x"}], "}"}], ",", " ", "x"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "1", ",", 
+            RowBox[{"Length", "[", "dataGare", "]"}]}], "}"}]}], "]"}]}], ";",
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"tableGare", " ", "=", 
+        RowBox[{"Transpose", "@", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"{", "enumerationGare", " ", "}"}], ",", " ", 
+           RowBox[{"Transpose", "@", "dataGare"}]}], " ", "]"}]}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
         RowBox[{"Colonna", " ", "bottoni", " ", "gare"}], " ", "*)"}], 
        "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"buttonsGare", " ", "=", " ", 
@@ -639,22 +668,7 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
           RowBox[{"{", 
            RowBox[{"i", ",", "1", ",", 
             RowBox[{"Length", "[", "dataGare", "]"}]}], "}"}]}], "]"}]}], ";",
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"(*", " ", 
-        RowBox[{
-        "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", "gare"}],
-         " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"enumerationGare", "=", " ", 
-        RowBox[{"Table", "[", 
-         RowBox[{
-          RowBox[{"With", "[", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{"x", "=", "x"}], "}"}], ",", " ", "x"}], "]"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"x", ",", "1", ",", 
-            RowBox[{"Length", "[", "dataGare", "]"}]}], "}"}]}], "]"}]}], ";",
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{
         "Unione", " ", "tabella", " ", "gare", " ", "con", " ", "colonne", 
@@ -663,10 +677,9 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
        "\[IndentingNewLine]", 
        RowBox[{"tableGare", " ", "=", 
         RowBox[{"Transpose", "@", 
-         RowBox[{"Join", "[", 
+         RowBox[{"Join", "[", " ", 
           RowBox[{
-           RowBox[{"{", "enumerationGare", " ", "}"}], ",", " ", 
-           RowBox[{"Transpose", "@", "dataGare"}], " ", ",", 
+           RowBox[{"Transpose", "@", "tableGare"}], " ", ",", 
            RowBox[{"{", "buttonsGare", " ", "}"}]}], "]"}]}]}], ";", 
        "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
@@ -729,7 +742,7 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
          RowBox[{"{", "\[IndentingNewLine]", 
           RowBox[{"\"\<\>\"", ",", " ", "\[IndentingNewLine]", 
            RowBox[{"Style", "[", 
-            RowBox[{"\"\<Gare\>\"", ",", 
+            RowBox[{"Gare", ",", 
              RowBox[{"{", 
               RowBox[{
                RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
@@ -963,17 +976,29 @@ gara.IdCampoDiGioco, gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT \
    3.767358933915927*^9}, {3.767358965859046*^9, 3.767358983513541*^9}, {
    3.767596367876319*^9, 3.7675964055789967`*^9}, {3.7675964416492195`*^9, 
    3.767596456120422*^9}, {3.767596665184995*^9, 3.7675967084094853`*^9}, {
-   3.7675967458247757`*^9, 3.767596747236081*^9}},
- CellLabel->"In[1]:=",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+   3.7675967458247757`*^9, 3.767596747236081*^9}, {3.7675973046170826`*^9, 
+   3.767597309910416*^9}, 3.767597343574933*^9, {3.7675974027469454`*^9, 
+   3.767597402976004*^9}, {3.767597489341833*^9, 3.7675975204776907`*^9}, {
+   3.767597691814099*^9, 3.767597698901801*^9}, {3.7675978718972163`*^9, 
+   3.767597879692257*^9}, {3.7675980936971397`*^9, 3.7675981268925066`*^9}, {
+   3.7675982270639315`*^9, 3.767598251040928*^9}, {3.7675983400304823`*^9, 
+   3.7675983625992517`*^9}, 3.767598397134015*^9, {3.7675984310296516`*^9, 
+   3.7675984328780565`*^9}, {3.7675985590569534`*^9, 3.767598559448046*^9}, {
+   3.767598606741988*^9, 3.7675986177327747`*^9}, 3.7675987967091646`*^9, {
+   3.7675988474710083`*^9, 3.7675988802773046`*^9}, {3.76759900165821*^9, 
+   3.7675990122549467`*^9}, {3.767599081230305*^9, 3.767599113861578*^9}, {
+   3.767599200034689*^9, 
+   3.7675992326379504`*^9}},ExpressionUUID->"cf18dd23-aebd-4759-800c-\
+ca6ba94acb43"],
 
 Cell[BoxData[
  StyleBox["\<\"Designazioni\"\>",
   StripOnInput->False,
   FontFamily->"Helvetica",
   FontSize->30]], "Output",
- CellChangeTimes->{3.767358986259096*^9, 3.767596296198354*^9, 
-  3.7675963853569794`*^9, 3.7675965028449903`*^9, 3.76759681223293*^9},
- CellLabel->"Out[10]=",ExpressionUUID->"57d36a90-fb25-4389-bdde-951f18379744"],
+ CellChangeTimes->{3.76759856143155*^9, 3.767598942406989*^9, 
+  3.7675990437588015`*^9, 3.767599144536355*^9, 3.7675992092160177`*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"c37df073-d750-48ff-b6d7-505db94ca0e8"],
 
 Cell[BoxData[
  ButtonBox["\<\"Visualizza gare\"\>",
@@ -981,13 +1006,13 @@ Cell[BoxData[
   ButtonFunction:>$CellContext`fStart,
   Evaluator->Automatic,
   Method->"Preemptive"]], "Output",
- CellChangeTimes->{3.767358986259096*^9, 3.767596296198354*^9, 
-  3.7675963853569794`*^9, 3.7675965028449903`*^9, 3.767596812264183*^9},
- CellLabel->"Out[11]=",ExpressionUUID->"22b78628-3f1f-4a9c-8b33-3a34b43363fd"]
+ CellChangeTimes->{3.76759856143155*^9, 3.767598942406989*^9, 
+  3.7675990437588015`*^9, 3.767599144536355*^9, 3.767599209224021*^9},
+ CellLabel->"Out[22]=",ExpressionUUID->"1a8c8b38-ae5b-49fb-8043-69fef1e818a4"]
 }, Open  ]]
 },
-WindowSize->{1350, 685},
-WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
 FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
 StyleDefinitions->"Default.nb"
 ]
@@ -1003,9 +1028,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 49349, 944, 4171, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
-Cell[49932, 968, 340, 7, 52, "Output",ExpressionUUID->"57d36a90-fb25-4389-bdde-951f18379744"],
-Cell[50275, 977, 391, 8, 44, "Output",ExpressionUUID->"22b78628-3f1f-4a9c-8b33-3a34b43363fd"]
+Cell[580, 22, 50712, 969, 4285, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+Cell[51295, 993, 340, 7, 52, "Output",ExpressionUUID->"c37df073-d750-48ff-b6d7-505db94ca0e8"],
+Cell[51638, 1002, 388, 8, 44, "Output",ExpressionUUID->"1a8c8b38-ae5b-49fb-8043-69fef1e818a4"]
 }, Open  ]]
 }
 ]
