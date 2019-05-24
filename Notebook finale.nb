@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     57110,       1105]
-NotebookOptionsPosition[     56581,       1088]
-NotebookOutlinePosition[     56924,       1103]
-CellTagsIndexPosition[     56881,       1100]
+NotebookDataLength[     58137,       1124]
+NotebookOptionsPosition[     57608,       1107]
+NotebookOutlinePosition[     57951,       1122]
+CellTagsIndexPosition[     57908,       1119]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -50,25 +50,37 @@ Cell[BoxData[
        "timeGara_", ",", "  ", "cityGara_"}], "]"}], " ", ":=", " ", 
      RowBox[{"Module", "[", 
       RowBox[{
-       RowBox[{"{", "birthDateArbitroYear", "}"}], ",", "\[IndentingNewLine]",
-        "\[IndentingNewLine]", 
-       RowBox[{"(*", " ", "TEST", " ", "*)"}], "\[IndentingNewLine]", 
-       RowBox[{"(*", " ", 
-        RowBox[{
-         RowBox[{"dayOfWeekGara", " ", "=", " ", "\"\<Lun\>\""}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"cityArbitro", " ", "=", " ", "\"\<TERRE DEL RENO\>\""}], 
-         ";", "\[IndentingNewLine]", 
-         RowBox[{"cityGara", " ", "=", " ", "\"\<Ferrara\>\""}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"birthDateArbitro", " ", "=", " ", "\"\<02/07/1995\>\""}], 
-         ";"}], " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{
         RowBox[{"probability", " ", "=", " ", "0"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"probbilityPast", "=", "1"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"probabilityDistance", " ", "=", " ", "1"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"probabilityDayOfWeek", " ", "=", " ", "1"}], ";", 
         "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"1", " ", "-", " ", "STORICO"}], " ", "*)"}], 
         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+          RowBox[{
+          "Gestisce", " ", "il", " ", "caso", " ", "caso", " ", "in", " ", 
+           "cui", " ", 
+           RowBox[{"l", "'"}], "arbitro", " ", "non", " ", "abbia", " ", 
+           "ancora", " ", "arbitrato", " ", "nessuna", " ", "gara", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"es", ".", " ", "ad"}], " ", "inizio", " ", "anno", " ", 
+             "sportivo"}], ")"}]}], ",", " ", 
+          RowBox[{"acceptedArbitro", " ", "=", " ", 
+           RowBox[{
+            RowBox[{"0", " ", "e", " ", "refusedArbitro"}], " ", "=", " ", 
+            "0"}]}], ",", " ", 
+          RowBox[{
+          "lasciando", " ", "inalterata", " ", "la", " ", 
+           "probabilit\[AGrave]", " ", "riguardante", " ", "il", " ", 
+           "passato"}]}], " ", "*)"}], "\[IndentingNewLine]", 
         RowBox[{"probbilityPast", " ", "=", 
          RowBox[{"If", "[", 
           RowBox[{
@@ -82,8 +94,6 @@ Cell[BoxData[
           "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"2", " ", "-", " ", "DISTANZA"}], " ", "*)"}], 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"probabilityDistance", " ", "=", " ", "1"}], ";", 
         "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{
@@ -252,8 +262,6 @@ Cell[BoxData[
          RowBox[{"3", " ", "-", " ", 
           RowBox[{"GIORNO", " ", "SETTIMANA", " ", "e", " ", "ORARIO"}]}], 
          " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"probabilityDayOfWeek", " ", "=", " ", "1"}], ";", 
-        "\[IndentingNewLine]", 
         RowBox[{"today", " ", "=", " ", 
          RowBox[{"DateList", "[", "]"}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"birthDateArbitroSplitted", " ", "=", " ", 
@@ -329,8 +337,7 @@ Cell[BoxData[
           RowBox[{"(", 
            RowBox[{"probabilityDayOfWeek", " ", "*", " ", "0.25"}], ")"}]}]}],
          ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"Return", "[", 
-         RowBox[{"IntegerPart", "[", "probability", "]"}], "]"}], ";"}]}], 
+        RowBox[{"Return", "[", "probability", "]"}], ";"}]}], 
       "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
    RowBox[{"(*", " ", 
@@ -349,10 +356,8 @@ Cell[BoxData[
           RowBox[{"selectedIdGaraGlobal", " ", "=", " ", "selectedIdGara"}], 
           ";"}], ",", "\[IndentingNewLine]", 
          RowBox[{"fRefreshArbitri", ";", "\[IndentingNewLine]", 
-          RowBox[{"(*", 
-           RowBox[{
-            RowBox[{"NotebookClose", "[", "notebookGare", "]"}], ";"}], 
-           "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"NotebookClose", "[", "notebookGare", "]"}], ";", 
+          "\[IndentingNewLine]", 
           RowBox[{"Style", "[", 
            RowBox[{"Arbitri", ",", 
             RowBox[{"{", 
@@ -579,14 +584,19 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT 10 \
             ";"}], "*)"}], "\[IndentingNewLine]", 
           RowBox[{"probability", "=", 
            RowBox[{"fGetProbability", "[", 
-            RowBox[{
-            "cityArbitro", ",", "birthDateArbitro", ",", " ", 
-             "acceptedArbitro", ",", " ", "refusedArbitro", ",", " ", 
+            RowBox[{"cityArbitro", ",", "birthDateArbitro", ",", " ", 
+             RowBox[{"ToExpression", "[", "acceptedArbitro", "]"}], ",", " ", 
+             RowBox[{"ToExpression", "[", "refusedArbitro", "]"}], ",", " ", 
              "dayOfWeekGara", ",", " ", "timeGara", ",", "  ", "cityGara"}], 
             "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"probabilityFormatted", " ", "=", " ", 
+           RowBox[{
+            RowBox[{"IntegerPart", "[", 
+             RowBox[{"probability", "*", "100"}], "]"}], "\"\<%\>\""}]}], ";",
+           "\[IndentingNewLine]", 
           RowBox[{"AppendTo", "[", 
            RowBox[{"probabilities", ",", 
-            RowBox[{"{", "probability", "}"}]}], "]"}], ";"}]}], 
+            RowBox[{"{", "probabilityFormatted", "}"}]}], "]"}], ";"}]}], 
         "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
        "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
@@ -1043,27 +1053,34 @@ gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT 10 \>\""}], "]"}]}],
    3.7676139276002517`*^9, 3.7676139319843645`*^9}, {3.7676143146520348`*^9, 
    3.767614376586729*^9}, {3.7676144526535764`*^9, 3.767614469148898*^9}, {
    3.767614580006983*^9, 3.76761461852872*^9}, {3.7676148275173464`*^9, 
-   3.7676148289607134`*^9}, {3.7676151188395343`*^9, 3.7676151511891537`*^9}},
- CellLabel->"In[23]:=",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+   3.7676148289607134`*^9}, {3.7676151188395343`*^9, 
+   3.7676151511891537`*^9}, {3.767616185800018*^9, 3.767616186517271*^9}, {
+   3.7676819019285836`*^9, 3.7676819390981507`*^9}, {3.767681978202704*^9, 
+   3.767681978884068*^9}, {3.767682028708771*^9, 3.767682085914961*^9}, {
+   3.767682203793662*^9, 
+   3.767682264674967*^9}},ExpressionUUID->"cf18dd23-aebd-4759-800c-\
+ca6ba94acb43"],
 
 Cell[BoxData[
  StyleBox["\<\"Designazioni\"\>",
   StripOnInput->False,
   FontFamily->"Helvetica",
   FontSize->30]], "Output",
- CellChangeTimes->{3.76759856143155*^9, 3.767598942406989*^9, 
-  3.7675990437588015`*^9, 3.767599144536355*^9, 3.7675992092160177`*^9, 
-  3.7676055389082956`*^9, 3.767605645779821*^9, 3.767605941707497*^9, 
-  3.7676103279734573`*^9, 3.7676105109153223`*^9, 3.7676118444388275`*^9, 
-  3.767611884995057*^9, 3.7676119578424263`*^9, 3.7676120849305525`*^9, 
-  3.76761213291368*^9, 3.767612208722745*^9, 3.7676123688462505`*^9, 
-  3.76761241210721*^9, 3.7676124756732674`*^9, 3.7676126596958632`*^9, 
-  3.767612745270561*^9, 3.767613154229909*^9, 3.7676132018809633`*^9, 
-  3.767613257132947*^9, 3.7676139352081785`*^9, 3.7676143805428004`*^9, 
-  3.767614427164543*^9, 3.7676144714494824`*^9, 3.767614537159157*^9, 
-  3.767614676575115*^9, 3.7676148319004574`*^9, 3.767614885001911*^9, 
-  3.76761512256448*^9, 3.7676151556861997`*^9},
- CellLabel->"Out[32]=",ExpressionUUID->"0a2dd340-adf2-432e-ba60-22df8dd1dce2"],
+ CellChangeTimes->{
+  3.76759856143155*^9, 3.767598942406989*^9, 3.7675990437588015`*^9, 
+   3.767599144536355*^9, 3.7675992092160177`*^9, 3.7676055389082956`*^9, 
+   3.767605645779821*^9, 3.767605941707497*^9, 3.7676103279734573`*^9, 
+   3.7676105109153223`*^9, 3.7676118444388275`*^9, 3.767611884995057*^9, 
+   3.7676119578424263`*^9, 3.7676120849305525`*^9, 3.76761213291368*^9, 
+   3.767612208722745*^9, 3.7676123688462505`*^9, 3.76761241210721*^9, 
+   3.7676124756732674`*^9, 3.7676126596958632`*^9, 3.767612745270561*^9, 
+   3.767613154229909*^9, 3.7676132018809633`*^9, 3.767613257132947*^9, 
+   3.7676139352081785`*^9, 3.7676143805428004`*^9, 3.767614427164543*^9, 
+   3.7676144714494824`*^9, 3.767614537159157*^9, 3.767614676575115*^9, 
+   3.7676148319004574`*^9, 3.767614885001911*^9, 3.76761512256448*^9, 
+   3.7676151556861997`*^9, 3.7676162033704667`*^9, 3.7676819447683125`*^9, 
+   3.76768198193985*^9, {3.7676820672772274`*^9, 3.7676820897764606`*^9}},
+ CellLabel->"Out[84]=",ExpressionUUID->"90eafb89-b9f7-4814-9ae5-19935af82264"],
 
 Cell[BoxData[
  ButtonBox["\<\"Visualizza gare\"\>",
@@ -1071,19 +1088,21 @@ Cell[BoxData[
   ButtonFunction:>$CellContext`fStart,
   Evaluator->Automatic,
   Method->"Preemptive"]], "Output",
- CellChangeTimes->{3.76759856143155*^9, 3.767598942406989*^9, 
-  3.7675990437588015`*^9, 3.767599144536355*^9, 3.7675992092160177`*^9, 
-  3.7676055389082956`*^9, 3.767605645779821*^9, 3.767605941707497*^9, 
-  3.7676103279734573`*^9, 3.7676105109153223`*^9, 3.7676118444388275`*^9, 
-  3.767611884995057*^9, 3.7676119578424263`*^9, 3.7676120849305525`*^9, 
-  3.76761213291368*^9, 3.767612208722745*^9, 3.7676123688462505`*^9, 
-  3.76761241210721*^9, 3.7676124756732674`*^9, 3.7676126596958632`*^9, 
-  3.767612745270561*^9, 3.767613154229909*^9, 3.7676132018809633`*^9, 
-  3.767613257132947*^9, 3.7676139352081785`*^9, 3.7676143805428004`*^9, 
-  3.767614427164543*^9, 3.7676144714494824`*^9, 3.767614537159157*^9, 
-  3.767614676575115*^9, 3.7676148319004574`*^9, 3.767614885001911*^9, 
-  3.76761512256448*^9, 3.7676151556942*^9},
- CellLabel->"Out[33]=",ExpressionUUID->"9fff7b42-ba6e-49b3-a21a-2c2b44c5c5c8"]
+ CellChangeTimes->{
+  3.76759856143155*^9, 3.767598942406989*^9, 3.7675990437588015`*^9, 
+   3.767599144536355*^9, 3.7675992092160177`*^9, 3.7676055389082956`*^9, 
+   3.767605645779821*^9, 3.767605941707497*^9, 3.7676103279734573`*^9, 
+   3.7676105109153223`*^9, 3.7676118444388275`*^9, 3.767611884995057*^9, 
+   3.7676119578424263`*^9, 3.7676120849305525`*^9, 3.76761213291368*^9, 
+   3.767612208722745*^9, 3.7676123688462505`*^9, 3.76761241210721*^9, 
+   3.7676124756732674`*^9, 3.7676126596958632`*^9, 3.767612745270561*^9, 
+   3.767613154229909*^9, 3.7676132018809633`*^9, 3.767613257132947*^9, 
+   3.7676139352081785`*^9, 3.7676143805428004`*^9, 3.767614427164543*^9, 
+   3.7676144714494824`*^9, 3.767614537159157*^9, 3.767614676575115*^9, 
+   3.7676148319004574`*^9, 3.767614885001911*^9, 3.76761512256448*^9, 
+   3.7676151556861997`*^9, 3.7676162033704667`*^9, 3.7676819447683125`*^9, 
+   3.76768198193985*^9, {3.7676820672772274`*^9, 3.767682089785463*^9}},
+ CellLabel->"Out[85]=",ExpressionUUID->"07e1e03c-d70e-42b9-bbdb-f29105d15d6b"]
 }, Open  ]]
 },
 WindowSize->{1366, 685},
@@ -1103,9 +1122,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 53863, 1024, 4456, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
-Cell[54446, 1048, 1035, 17, 52, "Output",ExpressionUUID->"0a2dd340-adf2-432e-ba60-22df8dd1dce2"],
-Cell[55484, 1067, 1081, 18, 44, "Output",ExpressionUUID->"9fff7b42-ba6e-49b3-a21a-2c2b44c5c5c8"]
+Cell[580, 22, 54614, 1039, 4399, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+Cell[55197, 1063, 1172, 19, 52, "Output",ExpressionUUID->"90eafb89-b9f7-4814-9ae5-19935af82264"],
+Cell[56372, 1084, 1220, 20, 44, "Output",ExpressionUUID->"07e1e03c-d70e-42b9-bbdb-f29105d15d6b"]
 }, Open  ]]
 }
 ]
