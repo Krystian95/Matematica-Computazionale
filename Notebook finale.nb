@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     58137,       1124]
-NotebookOptionsPosition[     57608,       1107]
-NotebookOutlinePosition[     57951,       1122]
-CellTagsIndexPosition[     57908,       1119]
+NotebookDataLength[     60238,       1163]
+NotebookOptionsPosition[     59709,       1146]
+NotebookOutlinePosition[     60052,       1161]
+CellTagsIndexPosition[     60009,       1158]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -589,11 +589,41 @@ NULL GROUP BY tesserato.IdTesserato ORDER BY tesserato.Cognome LIMIT 10 \
              RowBox[{"ToExpression", "[", "refusedArbitro", "]"}], ",", " ", 
              "dayOfWeekGara", ",", " ", "timeGara", ",", "  ", "cityGara"}], 
             "]"}]}], ";", "\[IndentingNewLine]", 
-          RowBox[{"probabilityFormatted", " ", "=", " ", 
+          RowBox[{"probabilityInteger", "=", 
+           RowBox[{"IntegerPart", "[", 
+            RowBox[{"probability", "*", "100"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(*", " ", 
            RowBox[{
-            RowBox[{"IntegerPart", "[", 
-             RowBox[{"probability", "*", "100"}], "]"}], "\"\<%\>\""}]}], ";",
-           "\[IndentingNewLine]", 
+           "Colora", " ", "la", " ", "probabilit\[AGrave]", " ", "in", " ", 
+            "base", " ", "al", " ", "valore"}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"probabilityColor", " ", "=", " ", "Green"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"probabilityColor", "=", " ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"Between", "[", 
+              RowBox[{"probabilityInteger", " ", ",", 
+               RowBox[{"{", 
+                RowBox[{"69", ",", " ", "50"}], "}"}]}], "]"}], ",", " ", 
+             "Orange", ",", " ", "probabilityColor"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"probabilityColor", "=", " ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"Between", "[", 
+              RowBox[{"probabilityInteger", ",", " ", 
+               RowBox[{"{", 
+                RowBox[{"49", ",", " ", "0"}], "}"}]}], "]"}], ",", " ", 
+             "Red", ",", " ", "probabilityColor"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"probabilityFormatted", " ", "=", " ", 
+           RowBox[{"Style", "[", 
+            RowBox[{
+             RowBox[{"probabilityInteger", "\"\<%\>\""}], ",", 
+             RowBox[{"FontColor", "\[Rule]", "probabilityColor"}]}], "]"}]}], 
+          ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
           RowBox[{"AppendTo", "[", 
            RowBox[{"probabilities", ",", 
             RowBox[{"{", "probabilityFormatted", "}"}]}], "]"}], ";"}]}], 
@@ -1057,9 +1087,12 @@ gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT 10 \>\""}], "]"}]}],
    3.7676151511891537`*^9}, {3.767616185800018*^9, 3.767616186517271*^9}, {
    3.7676819019285836`*^9, 3.7676819390981507`*^9}, {3.767681978202704*^9, 
    3.767681978884068*^9}, {3.767682028708771*^9, 3.767682085914961*^9}, {
-   3.767682203793662*^9, 
-   3.767682264674967*^9}},ExpressionUUID->"cf18dd23-aebd-4759-800c-\
-ca6ba94acb43"],
+   3.767682203793662*^9, 3.767682264674967*^9}, {3.767684285687111*^9, 
+   3.767684291531546*^9}, {3.767684324604537*^9, 3.767684550067154*^9}, {
+   3.7676846300211906`*^9, 3.767684646465783*^9}, 3.767684686452626*^9, {
+   3.7676847269364347`*^9, 3.7676847307894897`*^9}, {3.7676848333750696`*^9, 
+   3.767684839665736*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
 
 Cell[BoxData[
  StyleBox["\<\"Designazioni\"\>",
@@ -1079,8 +1112,11 @@ Cell[BoxData[
    3.7676144714494824`*^9, 3.767614537159157*^9, 3.767614676575115*^9, 
    3.7676148319004574`*^9, 3.767614885001911*^9, 3.76761512256448*^9, 
    3.7676151556861997`*^9, 3.7676162033704667`*^9, 3.7676819447683125`*^9, 
-   3.76768198193985*^9, {3.7676820672772274`*^9, 3.7676820897764606`*^9}},
- CellLabel->"Out[84]=",ExpressionUUID->"90eafb89-b9f7-4814-9ae5-19935af82264"],
+   3.76768198193985*^9, {3.7676820672772274`*^9, 3.7676820897764606`*^9}, 
+   3.7676841688165393`*^9, {3.767684351983963*^9, 3.7676843729908156`*^9}, 
+   3.767684406263796*^9, 3.767684585012528*^9, 3.76768465104183*^9, 
+   3.767684701846753*^9, 3.76768495925766*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"0af13682-7629-4e2f-8ff0-152974e3af96"],
 
 Cell[BoxData[
  ButtonBox["\<\"Visualizza gare\"\>",
@@ -1101,8 +1137,11 @@ Cell[BoxData[
    3.7676144714494824`*^9, 3.767614537159157*^9, 3.767614676575115*^9, 
    3.7676148319004574`*^9, 3.767614885001911*^9, 3.76761512256448*^9, 
    3.7676151556861997`*^9, 3.7676162033704667`*^9, 3.7676819447683125`*^9, 
-   3.76768198193985*^9, {3.7676820672772274`*^9, 3.767682089785463*^9}},
- CellLabel->"Out[85]=",ExpressionUUID->"07e1e03c-d70e-42b9-bbdb-f29105d15d6b"]
+   3.76768198193985*^9, {3.7676820672772274`*^9, 3.7676820897764606`*^9}, 
+   3.7676841688165393`*^9, {3.767684351983963*^9, 3.7676843729908156`*^9}, 
+   3.767684406263796*^9, 3.767684585012528*^9, 3.76768465104183*^9, 
+   3.767684701846753*^9, 3.7676849592836676`*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"c013d938-54bd-4def-97c8-8f2b0f9910d0"]
 }, Open  ]]
 },
 WindowSize->{1366, 685},
@@ -1122,9 +1161,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 54614, 1039, 4399, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
-Cell[55197, 1063, 1172, 19, 52, "Output",ExpressionUUID->"90eafb89-b9f7-4814-9ae5-19935af82264"],
-Cell[56372, 1084, 1220, 20, 44, "Output",ExpressionUUID->"07e1e03c-d70e-42b9-bbdb-f29105d15d6b"]
+Cell[580, 22, 56326, 1072, 4532, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+Cell[56909, 1096, 1364, 22, 52, "Output",ExpressionUUID->"0af13682-7629-4e2f-8ff0-152974e3af96"],
+Cell[58276, 1120, 1417, 23, 44, "Output",ExpressionUUID->"c013d938-54bd-4def-97c8-8f2b0f9910d0"]
 }, Open  ]]
 }
 ]
