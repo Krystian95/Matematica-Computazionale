@@ -12,14 +12,18 @@ SELECT
 FROM
 	tesserato
 LEFT JOIN designazione ON tesserato.IdTesserato = designazione.IdTesserato
+LEFT JOIN arbitro ON tesserato.IdTesserato = arbitro.IdTesserato
+LEFT JOIN fascia_arbitro ON arbitro.IdFascia = fascia_arbitro.IdFascia
 LEFT JOIN stato_designazione ON designazione.IdStatoDesignazione = stato_designazione.IdStatoDesignazione
 WHERE
 	tesserato.IdGruppo = 2 AND
 	tesserato.Abilitato = 1 AND
 	tesserato.Abilitazione IS NOT NULL AND
 	tesserato.ScadenzaCertificatoMedico IS NOT NULL AND 
-	tesserato.Citta IS NOT NULL
+	tesserato.Citta IS NOT NULL AND
+	fascia_arbitro.IdFascia IS NOT NULL
 GROUP BY
 	tesserato.IdTesserato
 ORDER BY
+	fascia_arbitro.Order,
 	tesserato.Cognome
