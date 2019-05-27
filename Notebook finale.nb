@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     67630,       1296]
-NotebookOptionsPosition[     67254,       1278]
-NotebookOutlinePosition[     67609,       1294]
-CellTagsIndexPosition[     67566,       1291]
+NotebookDataLength[     67884,       1294]
+NotebookOptionsPosition[     67355,       1277]
+NotebookOutlinePosition[     67698,       1292]
+CellTagsIndexPosition[     67655,       1289]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -51,7 +51,6 @@ Cell[BoxData[
      RowBox[{"Module", "[", 
       RowBox[{
        RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       
        RowBox[{
         RowBox[{"probability", " ", "=", " ", "0"}], ";", 
         "\[IndentingNewLine]", 
@@ -403,34 +402,30 @@ Cell[BoxData[
               RowBox[{"FontSize", "\[Rule]", " ", "12"}], ",", " ", 
               RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
              "}"}]}], " ", "]"}]}], ",", "\[IndentingNewLine]", 
-         RowBox[{
-          RowBox[{"WriteString", "[", 
-           RowBox[{"\"\<ID gara: \>\"", ",", "selectedIdGara"}], "]"}], ";", 
-          "\[IndentingNewLine]", 
-          RowBox[{"Button", "[", 
-           RowBox[{"\"\<Torna alle gare\>\"", ",", 
-            RowBox[{"notebookGare", " ", "=", " ", 
-             RowBox[{"CreateDocument", "[", 
-              RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{"Button", "[", 
+          RowBox[{"\"\<Torna alle gare\>\"", ",", 
+           RowBox[{"notebookGare", " ", "=", " ", 
+            RowBox[{"CreateDocument", "[", 
+             RowBox[{"{", "\[IndentingNewLine]", 
+              RowBox[{
                RowBox[{
-                RowBox[{
-                 RowBox[{"NotebookClose", "[", "notebookArbitri", "]"}], 
-                 ";"}], ",", "\[IndentingNewLine]", 
-                RowBox[{"fRefreshGare", ";", "\[IndentingNewLine]", 
-                 RowBox[{"Style", "[", 
-                  RowBox[{"Gare", ",", 
-                   RowBox[{"{", 
-                    RowBox[{
+                RowBox[{"NotebookClose", "[", "notebookArbitri", "]"}], ";"}],
+                ",", "\[IndentingNewLine]", 
+               RowBox[{"fRefreshGare", ";", "\[IndentingNewLine]", 
+                RowBox[{"Style", "[", 
+                 RowBox[{"Gare", ",", 
+                  RowBox[{"{", 
+                   RowBox[{
                     RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
                     RowBox[{"FontFamily", "\[Rule]", "\"\<Helvetica\>\""}]}], 
-                    "}"}]}], " ", "]"}]}], ",", "\[IndentingNewLine]", 
-                RowBox[{"Panel", "[", 
-                 RowBox[{
-                  RowBox[{"TableForm", "[", "tableGareWithHeadings", "]"}], 
-                  ",", "\"\<\>\"", ",", "Top", ",", 
-                  RowBox[{"Appearance", "\[Rule]", "\"\<Frameless\>\""}]}], 
-                 "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}]}], 
-           "\[IndentingNewLine]", "]"}]}], ",", "\[IndentingNewLine]", 
+                   "}"}]}], " ", "]"}]}], ",", "\[IndentingNewLine]", 
+               RowBox[{"Panel", "[", 
+                RowBox[{
+                 RowBox[{"TableForm", "[", "tableGareWithHeadings", "]"}], 
+                 ",", "\"\<\>\"", ",", "Top", ",", 
+                 RowBox[{"Appearance", "\[Rule]", "\"\<Frameless\>\""}]}], 
+                "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}]}], 
+          "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
          RowBox[{"Panel", "[", 
           RowBox[{
            RowBox[{"TableForm", "[", "tableArbitriWithHeadings", "]"}], ",", 
@@ -519,7 +514,7 @@ tesserato.Abilitato = 1 AND tesserato.Abilitazione IS NOT NULL AND \
 tesserato.ScadenzaCertificatoMedico IS NOT NULL AND tesserato.Citta IS NOT \
 NULL AND fascia_arbitro.IdFascia IS NOT NULL GROUP BY tesserato.IdTesserato \
 ORDER BY fascia_arbitro.Order, tesserato.Cognome\>\""}], "]"}]}], ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{
         "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", 
@@ -654,7 +649,6 @@ ORDER BY fascia_arbitro.Order, tesserato.Cognome\>\""}], "]"}]}], ";",
            RowBox[{"fGetProbability", "[", 
             RowBox[{"cityArbitro", ",", "birthDateArbitro", ",", " ", 
              RowBox[{"ToExpression", "[", "acceptedArbitro", "]"}], ",", " ", 
-             
              RowBox[{"ToExpression", "[", "refusedArbitro", "]"}], ",", " ", 
              "dayOfWeekGara", ",", " ", "timeGara", ",", "  ", "cityGara"}], 
             "]"}]}], ";", "\[IndentingNewLine]", 
@@ -664,37 +658,35 @@ ORDER BY fascia_arbitro.Order, tesserato.Cognome\>\""}], "]"}]}], ";",
           "\[IndentingNewLine]", "\[IndentingNewLine]", 
           RowBox[{"(*", " ", 
            RowBox[{
-            RowBox[{
-             RowBox[{
-             "Colora", " ", "la", " ", "probabilit\[AGrave]", " ", "in", " ", 
-              "base", " ", "al", " ", "valore", " ", "\[IndentingNewLine]", 
-              "probabilityColor"}], " ", "=", " ", "Green"}], ";", 
-            "\[IndentingNewLine]", 
-            RowBox[{"probabilityColor", "=", " ", 
-             RowBox[{"If", "[", 
-              RowBox[{
-               RowBox[{"Between", "[", 
-                RowBox[{"probabilityInteger", " ", ",", 
-                 RowBox[{"{", 
-                  RowBox[{"69", ",", " ", "50"}], "}"}]}], "]"}], ",", " ", 
-               "Orange", ",", " ", "probabilityColor"}], "]"}]}], ";", 
-            "\[IndentingNewLine]", 
-            RowBox[{"probabilityColor", "=", " ", 
-             RowBox[{"If", "[", 
-              RowBox[{
-               RowBox[{"Between", "[", 
-                RowBox[{"probabilityInteger", ",", " ", 
-                 RowBox[{"{", 
-                  RowBox[{"49", ",", " ", "0"}], "}"}]}], "]"}], ",", " ", 
-               "Red", ",", " ", "probabilityColor"}], "]"}]}], ";", 
-            "\[IndentingNewLine]", 
-            RowBox[{"probabilityFormatted", " ", "=", " ", 
-             RowBox[{"Style", "[", 
-              RowBox[{
-               RowBox[{"probabilityInteger", "\"\<%\>\""}], ",", 
-               RowBox[{"FontColor", "\[Rule]", "probabilityColor"}]}], 
-              "]"}]}], ";"}], "*)"}], "\[IndentingNewLine]", 
+           "Colora", " ", "la", " ", "probabilit\[AGrave]", " ", "in", " ", 
+            "base", " ", "al", " ", "valore"}], " ", "*)"}], 
           "\[IndentingNewLine]", 
+          RowBox[{"probabilityColor", " ", "=", " ", "Green"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"probabilityColor", "=", " ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"Between", "[", 
+              RowBox[{"probabilityInteger", " ", ",", 
+               RowBox[{"{", 
+                RowBox[{"69", ",", " ", "50"}], "}"}]}], "]"}], ",", " ", 
+             "Orange", ",", " ", "probabilityColor"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"probabilityColor", "=", " ", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"Between", "[", 
+              RowBox[{"probabilityInteger", ",", " ", 
+               RowBox[{"{", 
+                RowBox[{"49", ",", " ", "0"}], "}"}]}], "]"}], ",", " ", 
+             "Red", ",", " ", "probabilityColor"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"probabilityFormatted", " ", "=", " ", 
+           RowBox[{"Style", "[", 
+            RowBox[{
+             RowBox[{"probabilityInteger", "\"\<%\>\""}], ",", 
+             RowBox[{"FontColor", "\[Rule]", "probabilityColor"}]}], "]"}]}], 
+          ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
           RowBox[{"AppendTo", "[", 
            RowBox[{"probabilities", ",", 
             RowBox[{"{", "probabilityInteger", "}"}]}], "]"}], ";"}]}], 
@@ -755,6 +747,7 @@ ORDER BY fascia_arbitro.Order, tesserato.Cognome\>\""}], "]"}]}], ";",
         RowBox[{"SQLExecute", "[", 
          RowBox[{
          "connection", ",", 
+          
           "\"\<SELECT gara.IdGara, gara.Numero, campionato.Sigla AS \
 Campionato, girone.Girone, gara.GiornoSettimana AS Giorno, \
 DATE_FORMAT(gara.Data, '%d/%m/%Y') AS Data, DATE_FORMAT(gara.Ora, '%H:%i') AS \
@@ -896,8 +889,8 @@ gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT 10 \>\""}], "]"}]}],
            "\"\<MySQL(Connector/J)\>\"", ",", 
             "\"\<127.0.0.1:3306/designazioni\>\""}], "]"}], ",", 
           RowBox[{"\"\<Username\>\"", "\[Rule]", "\"\<root\>\""}], ",", 
-          RowBox[{"\"\<Password\>\"", "\[Rule]", "\"\<\>\""}]}], "]"}]}], ";",
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"\"\<Password\>\"", "\[Rule]", "\"\<root\>\""}]}], "]"}]}], 
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{
         "Aggiorna", " ", "tabelle", " ", "arbitri", " ", "e", " ", "gare"}], 
@@ -1219,8 +1212,10 @@ gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT 10 \>\""}], "]"}]}],
    3.767698979666374*^9}, {3.7676990798173437`*^9, 3.76769910644901*^9}, {
    3.767699144655798*^9, 3.7676991497156067`*^9}, 3.7676992963950777`*^9, {
    3.767699377842638*^9, 3.767699439694463*^9}, 3.76769948656892*^9, {
-   3.767700076532591*^9, 3.767700077642036*^9}},
- ExpressionUUID -> "cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+   3.767700076532591*^9, 3.767700077642036*^9}, {3.76794893646047*^9, 
+   3.767948936911662*^9}, {3.7679490059411354`*^9, 3.7679490194435453`*^9}, 
+   3.76794914710058*^9},ExpressionUUID->"cf18dd23-aebd-4759-800c-\
+ca6ba94acb43"],
 
 Cell[BoxData[
  StyleBox["\<\"Designazioni\"\>",
@@ -1246,7 +1241,9 @@ Cell[BoxData[
    3.767698333353407*^9, 3.767698453894663*^9, 3.767698504283024*^9, 
    3.767698582855588*^9, 3.767698940208612*^9, 3.767698988745072*^9, 
    3.7676991100730667`*^9, 3.7676991531235743`*^9, 3.7676993070373363`*^9, 
-   3.7676994446895437`*^9, 3.7676994937163773`*^9, 3.7677000817622957`*^9}],
+   3.7676994446895437`*^9, 3.7676994937163773`*^9, 3.7677000817622957`*^9, 
+   3.76794891567223*^9, 3.767949026887433*^9, 3.7679491059521575`*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"c53c6d3b-5d4c-43ac-94b0-674d940a57a0"],
 
 Cell[BoxData[
  ButtonBox["\<\"Visualizza gare\"\>",
@@ -1273,13 +1270,14 @@ Cell[BoxData[
    3.767698333353407*^9, 3.767698453894663*^9, 3.767698504283024*^9, 
    3.767698582855588*^9, 3.767698940208612*^9, 3.767698988745072*^9, 
    3.7676991100730667`*^9, 3.7676991531235743`*^9, 3.7676993070373363`*^9, 
-   3.7676994446895437`*^9, 3.7676994937163773`*^9, 3.7677000817737722`*^9}]
+   3.7676994446895437`*^9, 3.7676994937163773`*^9, 3.7677000817622957`*^9, 
+   3.76794891567223*^9, 3.767949026887433*^9, 3.7679491059581566`*^9},
+ CellLabel->"Out[22]=",ExpressionUUID->"52faf403-a81b-439c-b429-f42e8a1004d2"]
 }, Open  ]]
 },
 WindowSize->{1366, 685},
-WindowMargins->{{26, Automatic}, {Automatic, 42}},
-FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
-2014)",
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -1294,9 +1292,9 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 63574, 1200, 4432, "Input"],
-Cell[64157, 1224, 1514, 24, 47, "Output"],
-Cell[65674, 1250, 1564, 25, 43, "Output"]
+Cell[580, 22, 63375, 1195, 4798, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+Cell[63958, 1219, 1664, 26, 52, "Output",ExpressionUUID->"c53c6d3b-5d4c-43ac-94b0-674d940a57a0"],
+Cell[65625, 1247, 1714, 27, 44, "Output",ExpressionUUID->"52faf403-a81b-439c-b429-f42e8a1004d2"]
 }, Open  ]]
 }
 ]
