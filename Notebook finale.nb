@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     66029,       1251]
-NotebookOptionsPosition[     65729,       1238]
-NotebookOutlinePosition[     66072,       1253]
-CellTagsIndexPosition[     66029,       1250]
+NotebookDataLength[     65048,       1229]
+NotebookOptionsPosition[     64748,       1216]
+NotebookOutlinePosition[     65091,       1231]
+CellTagsIndexPosition[     65048,       1228]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -218,88 +218,65 @@ Cell[BoxData[
            RowBox[{"Between", "[", 
             RowBox[{"distance", ",", " ", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"0", "*", "conversionFactorTravelGeo"}], ",", " ", 
-               RowBox[{"10", "*", "conversionFactorTravelGeo"}]}], "}"}]}], 
-            "]"}], ",", " ", "0.05", ",", " ", "0"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", " ", 
+              RowBox[{"0", ",", " ", "10"}], "}"}]}], "]"}], ",", " ", "0.05",
+            ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
         RowBox[{"probabilityDistance", " ", "-=", " ", 
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{"Between", "[", 
             RowBox[{"distance", ",", " ", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"11", "*", "conversionFactorTravelGeo"}], ",", " ", 
-               RowBox[{"20", "*", "conversionFactorTravelGeo"}]}], "}"}]}], 
-            "]"}], ",", " ", "0.10", ",", " ", "0"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", " ", 
+              RowBox[{"11", ",", " ", "20"}], "}"}]}], "]"}], ",", " ", 
+           "0.10", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
         RowBox[{"probabilityDistance", " ", "-=", " ", 
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{"Between", "[", 
             RowBox[{"distance", ",", " ", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"21", "*", "conversionFactorTravelGeo"}], ",", " ", 
-               RowBox[{"40", "*", "conversionFactorTravelGeo"}]}], "}"}]}], 
-            "]"}], ",", " ", "0.15", ",", " ", "0"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", " ", 
+              RowBox[{"21", ",", " ", "40"}], "}"}]}], "]"}], ",", " ", 
+           "0.15", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
         RowBox[{"probabilityDistance", " ", "-=", " ", 
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{"Between", "[", 
             RowBox[{"distance", ",", " ", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"41", "*", "conversionFactorTravelGeo"}], ",", " ", 
-               RowBox[{"70", "*", "conversionFactorTravelGeo"}]}], "}"}]}], 
-            "]"}], ",", " ", "0.20", ",", " ", "0"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", " ", 
+              RowBox[{"41", ",", " ", "70"}], "}"}]}], "]"}], ",", " ", 
+           "0.20", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
         RowBox[{"probabilityDistance", " ", "-=", " ", 
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{"Between", "[", 
             RowBox[{"distance", ",", " ", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"71", "*", "conversionFactorTravelGeo"}], ",", " ", 
-               RowBox[{"100", "*", "conversionFactorTravelGeo"}]}], "}"}]}], 
-            "]"}], ",", " ", "0.25", ",", " ", "0"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", " ", 
+              RowBox[{"71", ",", " ", "100"}], "}"}]}], "]"}], ",", " ", 
+           "0.25", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
         RowBox[{"probabilityDistance", " ", "-=", " ", 
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{"Between", "[", 
             RowBox[{"distance", ",", " ", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"101", "*", "conversionFactorTravelGeo"}], ",", " ", 
-               RowBox[{"150", "*", "conversionFactorTravelGeo"}]}], "}"}]}], 
-            "]"}], ",", " ", "0.30", ",", " ", "0"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", " ", 
+              RowBox[{"101", ",", " ", "150"}], "}"}]}], "]"}], ",", " ", 
+           "0.30", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
         RowBox[{"probabilityDistance", " ", "-=", " ", 
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{"Between", "[", 
             RowBox[{"distance", ",", " ", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"151", "*", "conversionFactorTravelGeo"}], ",", " ", 
-               RowBox[{"250", "*", "conversionFactorTravelGeo"}]}], "}"}]}], 
-            "]"}], ",", " ", "0.35", ",", " ", "0"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", " ", 
+              RowBox[{"151", ",", " ", "250"}], "}"}]}], "]"}], ",", " ", 
+           "0.35", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
         RowBox[{"probabilityDistance", " ", "-=", " ", 
          RowBox[{"If", "[", 
           RowBox[{
            RowBox[{"Between", "[", 
             RowBox[{"distance", ",", " ", 
              RowBox[{"{", 
-              RowBox[{
-               RowBox[{"251", "*", "conversionFactorTravelGeo"}], ",", " ", 
-               RowBox[{"999", "*", "conversionFactorTravelGeo"}]}], "}"}]}], 
-            "]"}], ",", " ", "0.40", ",", " ", "0"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+              RowBox[{"251", ",", " ", "999"}], "}"}]}], "]"}], ",", " ", 
+           "0.40", ",", " ", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"3", " ", "-", " ", 
           RowBox[{"GIORNO", " ", "SETTIMANA", " ", "e", " ", "ORARIO"}]}], 
@@ -1233,8 +1210,9 @@ gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT 1000\>\""}], "]"}]}],
    3.7679577499368315`*^9}, {3.767957907463855*^9, 3.7679580595768275`*^9}, {
    3.7679581708975315`*^9, 3.767958246225428*^9}, 3.768021086592227*^9, 
    3.7680211272806587`*^9, {3.7680244132465763`*^9, 3.768024474833267*^9}, {
-   3.7680245660772247`*^9, 3.768024566510339*^9}},
- CellLabel->"In[12]:=",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"]
+   3.7680245660772247`*^9, 3.768024566510339*^9}, {3.7680248682691917`*^9, 
+   3.76802487278032*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"]
 },
 WindowSize->{1366, 685},
 WindowMargins->{{-8, Automatic}, {Automatic, -8}},
@@ -1252,7 +1230,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 65167, 1216, 4285, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"]
+Cell[558, 20, 64186, 1194, 4285, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"]
 }
 ]
 *)
