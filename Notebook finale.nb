@@ -10,14 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     65048,       1229]
-NotebookOptionsPosition[     64748,       1216]
-NotebookOutlinePosition[     65091,       1231]
-CellTagsIndexPosition[     65048,       1228]
+NotebookDataLength[     66715,       1266]
+NotebookOptionsPosition[     66190,       1249]
+NotebookOutlinePosition[     66533,       1264]
+CellTagsIndexPosition[     66490,       1261]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{
   RowBox[{"(*", " ", 
@@ -279,8 +281,8 @@ Cell[BoxData[
         "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"3", " ", "-", " ", 
-          RowBox[{"GIORNO", " ", "SETTIMANA", " ", "e", " ", "ORARIO"}]}], 
-         " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"GIORNO", " ", "SETTIMANA"}]}], " ", "*)"}], 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"today", " ", "=", " ", 
          RowBox[{"DateList", "[", "]"}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"birthDateArbitroSplitted", " ", "=", " ", 
@@ -504,24 +506,27 @@ IdRuoloDesignazione, IdStatoDesignazione, DataOra) VALUES (\>\"", " ", "<>",
         RowBox[{"SQLExecute", "[", 
          RowBox[{
          "connection", ",", 
-          "\"\<SELECT tesserato.IdTesserato, tesserato.Tessera, \
-tesserato.Cognome, tesserato.Nome, CAST(SUM(CASE WHEN stato_designazione.Nome \
-IN ('Accettata', 'Trasmessa', 'Temporanea') THEN 1 ELSE 0 END) AS CHAR) AS \
-Accettate, CAST(SUM(CASE WHEN stato_designazione.Nome = 'Rifiutata' THEN 1 \
-ELSE 0 END) AS CHAR) AS Rifiutate, tesserato.Abilitazione, \
-DATE_FORMAT(tesserato.DataNascita, '%d/%m/%Y') AS 'Data di nascita', \
+          "\"\<\nSELECT \n\ttesserato.IdTesserato, \n\ttesserato.Tessera, \n\t\
+tesserato.Cognome, \n\ttesserato.Nome, \n\tCAST(SUM(CASE WHEN \
+stato_designazione.Nome IN ('Accettata', 'Trasmessa', 'Temporanea') THEN 1 \
+ELSE 0 END) AS CHAR) AS Accettate, \n\tCAST(SUM(CASE WHEN \
+stato_designazione.Nome = 'Rifiutata' THEN 1 ELSE 0 END) AS CHAR) AS \
+Rifiutate, tesserato.Abilitazione, \n\tDATE_FORMAT(tesserato.DataNascita, \
+'%d/%m/%Y') AS 'Data di nascita', \n\t\
 DATE_FORMAT(tesserato.ScadenzaCertificatoMedico, '%d/%m/%Y') AS \
-ScadenzaCertificatoMedico, UPPER(tesserato.Citta) AS Citta FROM tesserato \
-LEFT JOIN designazione ON tesserato.IdTesserato = designazione.IdTesserato \
-LEFT JOIN arbitro ON tesserato.IdTesserato = arbitro.IdTesserato LEFT JOIN \
-fascia_arbitro ON arbitro.IdFascia = fascia_arbitro.IdFascia LEFT JOIN \
-stato_designazione ON designazione.IdStatoDesignazione = \
-stato_designazione.IdStatoDesignazione WHERE tesserato.IdGruppo = 2 AND \
-tesserato.Abilitato = 1 AND tesserato.Abilitazione IS NOT NULL AND \
-tesserato.ScadenzaCertificatoMedico IS NOT NULL AND tesserato.Citta IS NOT \
-NULL AND fascia_arbitro.IdFascia IS NOT NULL GROUP BY tesserato.IdTesserato \
-ORDER BY fascia_arbitro.Order, tesserato.Cognome\>\""}], "]"}]}], ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+ScadenzaCertificatoMedico, \n\tUPPER(tesserato.Citta) AS Citta \nFROM \n\t\
+tesserato \n\tLEFT JOIN designazione ON tesserato.IdTesserato = \
+designazione.IdTesserato \n\tLEFT JOIN arbitro ON tesserato.IdTesserato = \
+arbitro.IdTesserato \n\tLEFT JOIN fascia_arbitro ON arbitro.IdFascia = \
+fascia_arbitro.IdFascia \n\tLEFT JOIN stato_designazione ON \
+designazione.IdStatoDesignazione = stato_designazione.IdStatoDesignazione \n\
+WHERE \n\ttesserato.IdGruppo = 2 AND \n\ttesserato.Abilitato = 1 AND \n\t\
+tesserato.Abilitazione IS NOT NULL AND \n\t\
+tesserato.ScadenzaCertificatoMedico IS NOT NULL AND \n\ttesserato.Citta IS \
+NOT NULL AND \n\tfascia_arbitro.IdFascia IS NOT NULL \nGROUP BY \n\t\
+tesserato.IdTesserato \nORDER BY \n\tfascia_arbitro.Order, \n\t\
+tesserato.Cognome\n\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{
         "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", 
@@ -716,24 +721,27 @@ ORDER BY fascia_arbitro.Order, tesserato.Cognome\>\""}], "]"}]}], ";",
         RowBox[{"SQLExecute", "[", 
          RowBox[{
          "connection", ",", 
-          "\"\<SELECT gara.IdGara, gara.Numero, campionato.Sigla AS \
-Campionato, girone.Girone, gara.GiornoSettimana AS Giorno, \
-DATE_FORMAT(gara.Data, '%d/%m/%Y') AS Data, DATE_FORMAT(gara.Ora, '%H:%i') AS \
-Ora, squadra_a.Nome AS 'Squadra A', squadra_b.Nome AS 'Squadra B', \
-campo_di_gioco.Campo, campo_di_gioco.Comune, campo_di_gioco.Provincia, \
+          "\"\<\nSELECT \n\tgara.IdGara, \n\tgara.Numero, \n\t\
+campionato.Sigla AS Campionato, \n\tgirone.Girone, \n\tgara.GiornoSettimana \
+AS Giorno, \n\tDATE_FORMAT(gara.Data, '%d/%m/%Y') AS Data, \n\t\
+DATE_FORMAT(gara.Ora, '%H:%i') AS Ora, \n\tsquadra_a.Nome AS 'Squadra A', \n\t\
+squadra_b.Nome AS 'Squadra B', \n\tcampo_di_gioco.Campo, \n\t\
+campo_di_gioco.Comune, \n\tcampo_di_gioco.Provincia, \n\t\
 IFNULL(CONCAT(tesserato.Cognome, ' ', SUBSTRING(tesserato.Nome, 1, 1), '.'), \
-'-') AS Arbitro FROM gara LEFT JOIN campionato ON gara.IdCampionato = \
-campionato.IdCampionato LEFT JOIN campo_di_gioco ON gara.IdCampoDiGioco = \
-campo_di_gioco.IdCampoDiGioco LEFT JOIN squadra squadra_a ON gara.IdSquadraA \
-= squadra_a.IdSquadra LEFT JOIN squadra squadra_b ON gara.IdSquadraB = \
-squadra_b.IdSquadra LEFT JOIN girone ON gara.IdGirone = girone.IdGirone LEFT \
-JOIN designazione ON gara.IdGara = designazione.IdGara LEFT JOIN tesserato ON \
-designazione.IdTesserato = tesserato.IdTesserato WHERE gara.IdGruppo = 2 AND \
-gara.IdAnnoSportivo = 1 AND campo_di_gioco.Campo IS NOT NULL AND \
-campo_di_gioco.Provincia = 'Ferrara' AND gara.Data IS NOT NULL AND \
-gara.IdGirone IS NOT NULL ORDER BY gara.Data, gara.Ora, gara.IdCampoDiGioco, \
-gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT 1000\>\""}], "]"}]}],
-        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+'-') AS Arbitro \nFROM \n\tgara \n\tLEFT JOIN campionato ON gara.IdCampionato \
+= campionato.IdCampionato \n\tLEFT JOIN campo_di_gioco ON gara.IdCampoDiGioco \
+= campo_di_gioco.IdCampoDiGioco \n\tLEFT JOIN squadra squadra_a ON \
+gara.IdSquadraA = squadra_a.IdSquadra \n\tLEFT JOIN squadra squadra_b ON \
+gara.IdSquadraB = squadra_b.IdSquadra \n\tLEFT JOIN girone ON gara.IdGirone = \
+girone.IdGirone \n\tLEFT JOIN designazione ON gara.IdGara = \
+designazione.IdGara \n\tLEFT JOIN tesserato ON designazione.IdTesserato = \
+tesserato.IdTesserato \nWHERE \n\tgara.IdGruppo = 2 AND \n\t\
+gara.IdAnnoSportivo = 1 AND \n\tcampo_di_gioco.Campo IS NOT NULL AND \n\t\
+campo_di_gioco.Provincia = 'Ferrara' AND \n\tgara.Data IS NOT NULL AND \
+gara.IdGirone IS NOT NULL \nORDER BY \n\tgara.Data, \n\tgara.Ora, \n\t\
+gara.IdCampoDiGioco, \n\tgara.Numero, \n\tgara.IdGara, \n\t\
+designazione.DataOra ASC \nLIMIT 1000\n\>\""}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"(*", " ", 
         RowBox[{
         "Colonna", " ", "numeri", " ", "righe", " ", "tabella", " ", "gare"}],
@@ -892,7 +900,7 @@ gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT 1000\>\""}], "]"}]}],
     RowBox[{"Output", " ", "schermata", " ", "iniziale"}], " ", "*)"}], 
    "\[IndentingNewLine]", 
    RowBox[{"Style", "[", 
-    RowBox[{"\"\<Designazioni\>\"", ",", 
+    RowBox[{"\"\<Designazioni Arbitrali Pallacanestro\>\"", ",", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"FontSize", "\[Rule]", " ", "30"}], ",", " ", 
@@ -1211,8 +1219,33 @@ gara.Numero, gara.IdGara, designazione.DataOra ASC LIMIT 1000\>\""}], "]"}]}],
    3.7679581708975315`*^9, 3.767958246225428*^9}, 3.768021086592227*^9, 
    3.7680211272806587`*^9, {3.7680244132465763`*^9, 3.768024474833267*^9}, {
    3.7680245660772247`*^9, 3.768024566510339*^9}, {3.7680248682691917`*^9, 
-   3.76802487278032*^9}},
- CellLabel->"In[1]:=",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"]
+   3.76802487278032*^9}, {3.7680284325259542`*^9, 3.768028438800647*^9}, {
+   3.7680292942597103`*^9, 3.7680292949777584`*^9}, {3.768030205120445*^9, 
+   3.768030211905158*^9}, {3.7680302525724382`*^9, 3.7680303324003105`*^9}, {
+   3.768030454781723*^9, 3.768030649412898*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+
+Cell[BoxData[
+ StyleBox["\<\"Designazioni Arbitrali Pallacanestro\"\>",
+  StripOnInput->False,
+  FontFamily->"Helvetica",
+  FontSize->30]], "Output",
+ CellChangeTimes->{3.768028356405778*^9, 3.7680284412941504`*^9, 
+  3.768028668629795*^9, 3.768029615783209*^9, 3.768030215091955*^9, 
+  3.768030368769972*^9, 3.7680304586116877`*^9, 3.768031267236375*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"63c8296c-b65a-465a-9d06-9059ae290d47"],
+
+Cell[BoxData[
+ ButtonBox["\<\"Visualizza gare\"\>",
+  Appearance->Automatic,
+  ButtonFunction:>$CellContext`fStart,
+  Evaluator->Automatic,
+  Method->"Preemptive"]], "Output",
+ CellChangeTimes->{3.768028356405778*^9, 3.7680284412941504`*^9, 
+  3.768028668629795*^9, 3.768029615783209*^9, 3.768030215091955*^9, 
+  3.768030368769972*^9, 3.7680304586116877`*^9, 3.7680312672563815`*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"6bcad101-e8c1-44eb-b6b1-85da488e94ed"]
+}, Open  ]]
 },
 WindowSize->{1366, 685},
 WindowMargins->{{-8, Automatic}, {Automatic, -8}},
@@ -1230,7 +1263,11 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 64186, 1194, 4285, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"]
+Cell[CellGroupData[{
+Cell[580, 22, 64692, 1203, 5178, "Input",ExpressionUUID->"cf18dd23-aebd-4759-800c-ca6ba94acb43"],
+Cell[65275, 1227, 434, 8, 52, "Output",ExpressionUUID->"63c8296c-b65a-465a-9d06-9059ae290d47"],
+Cell[65712, 1237, 462, 9, 44, "Output",ExpressionUUID->"6bcad101-e8c1-44eb-b6b1-85da488e94ed"]
+}, Open  ]]
 }
 ]
 *)
