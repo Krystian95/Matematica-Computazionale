@@ -1,0 +1,80 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fswiss\fcharset0 Arial-BoldMT;\f2\fswiss\fcharset0 Helvetica;
+\f3\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\margb1134\margt1417\vieww28800\viewh18000\viewkind1
+\deftab720
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri0\qj\partightenfactor0
+
+\f0\fs24 \cf0 titolo\
+\
+foto\
+\
+nomi, intestazione\
+\
+inserire inizio progetto\
+\
+bottone rischiamo guida MySQL
+\f1\b\fs28 \
+\
+Obiettivo\
+\
+
+\f0\b0\fs24 L\'92obiettivo del nostro progetto di Matematica Computazionale \'e8 quello di realizzare un notebook di Mathematica che permetta all\'92utente di designare gli arbitri per un\'92insieme di partite di basket, prevedendo la probabilit\'e0 con la quale l\'92arbitro potrebbe accettare la designazione.\
+\
+Per tale scopo abbiamo scelto di utilizzare un database MySQL collegato a Mathematica, nel quale sono memorizzati tutti i dati delle gare, dei tesserati e delle designazioni passate, relativamente all\'92anno sportivo in corso (2018/2019). Questo database \'e8 stato popolato nel corso di quest\'92anno grazie ad una applicazione web creata appositamente per gestire le designazioni arbitrali di pallacanestro (https://www.designazioni.it). Il calcolo della probabilit\'e0 \'e8 una feature attualmente mancante nell\'92applicazione reale e abbiamo dunque pensato di creare con Mathematica un prototipo di tale funzionalit\'e0.\
+\
+
+\f1\b\fs28 Modalit\'e0 di utilizzo
+\f0\b0\fs24 \
+\
+Dopo aver premuto sul pulsante \'93Visualizza gare\'94 nel notebook di partenza, all\'92utente \'e8 mostrato un nuovo notebook nel quale \'e8 presente la tabella delle gare disponibili (gi\'e0 designate e da designare). I dati mostrati nella tabella sono recuperati dal database tramite un\'92apposita query e successivamente elaborati per visualizzarli all\'92interno di una tabella. L\'92utente pu\'f2 quindi scorrerla leggendo i dettagli per ogni gara, in particolare: ID, numero, campionato, girone, giorno, data, ora, squadra A, squadra B, campo, comune, provincia e arbitro. Una volta scelta la gara per la quale designare un arbitro, l\'92utente pu\'f2 premere sul pulsante \'93Scegli arbitro\'94 posizionato nella colonna pi\'f9 a destra sulla riga della gara. Premendo su tale pulsante si chiuder\'e0 il notebook delle gare e si aprir\'e0 un nuovo notebook, all\'92interno del quale sono contenuti i dati degli arbitri. In particolare \'e8 visualizzata una tabella che mostra i dati recuperati dal database, alla quale vengono aggiunte le colonne relative al numero della riga, alla probabilit\'e0 di accettazione della designazione da parte di ogni arbitro e la colonna che contiene i pulsanti \'93Designa arbitro\'94. I dati mostrati nella tabella rappresentano le informazioni relative agli arbitri: ID, tessera, cognome, nome, accettate, rifiutate, categoria, data di nascita, certificato medico, citt\'e0 di residenza e probabilit\'e0 di accettare. Nella parte superiore del notebook aperto l\'92utente pu\'f2 visualizzare i dettagli della gara selezionata, per la quale si sta designando l\'92arbitro. L\'92utente, nel caso in qui si sia sbagliato a selezionare la gara o non volesse pi\'f9 designare un arbitro per la gara selezionata, pu\'f2 premere sul pulsante \'93Torna alle gare\'94, In questo modo si chiuder\'e0 il notebook degli arbitri e si riaprir\'e0 quello delle gare, senza apportare alcuna modifica. Quando l\'92utente preme sul pulsante \'93Designa arbitro\'94, posizionato nella colonna pi\'f9 a destra sulla riga dell\'92arbitro individuato, viene eseguita una query al database che elimina un\'92eventuale designazione gi\'e0 esistente di un arbitro per la gara selezionata e crea una nuova designazione per la medesima gara nella tabella dedicata alle designazioni. Tornando sul notebook delle gare, la relativa tabella verr\'e0 aggiornata con la designazione eseguita, che l\'92utente potr\'e0 vedere nella colonna dedicata all\'92arbitro.
+\fs16 \
+\
+\
+
+\f1\b\fs28 Codice
+\f0\b0\fs24 \
+\
+Per realizzare il progetto abbiamo innanzitutto importato e utilizzato la libreria DatabaseLink. Abbiamo strutturato il software in una serie di funzioni che si richiamano a vicenda tra loro. Nella parte in fondo al notebook di partenza si costruisce il titolo del progetto e il pulsante \'93Visualizza gare\'94 che se premuto fa partire l\'92esecuzione del programma, lanciando la funzione 
+\f1\b fStart
+\f0\b0 . Tale funzione si occupa di stabilire la connessione con il database, costruire la tabella delle gare richiamando la funzione 
+\f1\b fRefreshGare
+\f0\b0  ed aprire il notebook delle gare. All\'92interno di fRefreshGare si esegue la query al database per recuperare tutti i dati delle gare sotto forma di tabella. Successivamente si crea una colonna da aggiungere tramite transpose e join all\'92inizio della tabella appena creata, nella quale sono mostrati i numeri delle righe della tabella. Dopodich\'e9 si crea la colonna dei pulsanti \'93Scegli arbitro\'94 e la si aggiunge alla fine della tabella delle gare. Infine, per completare quest\'92ultima tabella si aggiunge l\'92intestazione all\'92inizio della stessa. Premendo sui pulsanti \'93Scegli arbitro\'94 si invoca la funzione behaviorButtonsGare alla quale si passano i dati della gara selezionata. Il comportamento di questa funzione prevede la chiusura di quello delle gare e la creazione del notebook degli arbitri. Quest\'92ultima \'e8 composta principalmente dall\'92utilizzo della funzione 
+\f1\b fRefreshArbitri
+\f0\b0 , che in modo simile a quanto descritto per la funzione fRefreshGare, recupera i dati degli arbitri. La particolarit\'e0 di questa funzione rispetto a fRefreshGare \'e8 il calcolo della probabilit\'e0 di accettazione della gara selezionata da parte di ogni arbitro. Questo viene effettuato, prima dell\'92effettiva visualizzazione, attraverso un ciclo for sugli arbitri, dove per ognuno si recuperano i dati dello stesso e, unitamente a quelli della gare selezionata, li si passa come parametri di input della funzione 
+\f1\b fGetProbability
+\f0\b0 . La probabilit\'e0 di accettazione \'e8 suddivisa in tre parti: storico (peso: 0.5), distanza tra la citt\'e0 dell\'92arbitro e a citt\'e0 della gara (peso: 0.25) e il giorno della gara (peso: 0.25). \
+Lo storico \'e8 calcolato come rapporto fra il numero di partite accettate e il totale di quale ricevute (accettate + rifiutate). La distanza \'e8 calcolata geometricamente, in base ad essa la probabilit\'e0 \'e8 ridotta all\'92aumentare della distanza. La valutazione sul giorno della gara consiste che se l\'92arbitro ha almeno 25 anni \'e8 considerato lavoratore, quindi la probabilit\'e0 di accettare la gare in un giorno feriale (luned\'ec - venerd\'ec) \'e8 drasticamente ridotta. Se l\'92arbitro ha meno di 25 anni viene ipotizzato che sia studente e quindi la probabilit\'e0 viene ridotta di poco. Per facilitare la visualizzazione delle probabilit\'e0 da parte dell\'92utente, esse vengono colorate in base a degli intervalli predefiniti in verde, arancione o rosso. Dopo che l\'92utente ha scelto l\'92arbitro da designare per la gara selezionata pu\'f2 premere sul pulsante \'93Designa arbitro\'94, tale pulsante esegue la funzione behaviorButtonsGare. Quest\'92ultima chiude il notebook degli arbitri, cancella eventuali designazioni presenti per quella gara, inserisce la nuova designazione e infine riapre il notebook delle gare aggiornate.\
+\
+
+\f1\b\fs28 Problematiche
+\f0\b0\fs24 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\ri0\qj\partightenfactor0
+
+\f2 \cf0 - Eseguire pi\'f9 linee di codice senza dare l\'92invio per ognuna (risolta con una funzione di inizializzazione ed \'93Evaluate Notebook\'94)\
+- Visualizzare le intestazioni delle tabelle in grassetto. Si \'e8 dovuta utilizzare Map[] per applicare lo Style[] Bold ad ogni singolo elemento dell\'92intestazione (Map[Style[#, Bold] &, heading])\
+- Rimuovere l\'92unit\'e0 di misura dall\'92output di TravelDistance[]: utilizzata QuantityMagnitude[]\
+- Eseguire diverse computazioni di TravelDistance[] in sequenza (>20), non arrivava a computare tutti gli elementi e si interrompeva prima, senza restituire n\'e9 output n\'e9 errori. Bypassata utilizzando GeoDistance[]\
+- Restituire per il calcolo della probabilit\'e0 in numero e non una frazione. Risolto convertendo i parametri di input da string a integer utilizzando ToExpression[]\
+- Rimuovere i doppi apici dalle stringhe stampate tramite Style[], alcune stampe sono state risolte rimuovendo i doppi apici dal contenuto, altre \'e8 stato necessario lasciarli poich\'e9 erano concatenazione di stringhe e variabili (es. Style[Arbitri, \{FontSize -> 30, FontFamily -> "Helvetica"\} ])\
+- Formattazione dei nomi delle citt\'e0 per GeoDistance[]\
+- Versionare i notebook con GitHub (Desktop), poich\'e9 il loro contenuto non \'e8 semplice testo ma complesse stringhe con i valori delle celle valutate e non\
+- Per riuscire a collegare i pulsanti \'93Scegli arbitro\'94 alla relativa riga della gara selezionata abbiamo usato una particolare applicazione della funzione With[] (https://mathematica.stackexchange.com/questions/105526/table-of-buttons). In modo simile \'e8 stata utilizzata anche per i pulsanti \'93Designa arbitro\'94 e per generare i numeri delle righe nelle tabelle posti nella prima colonna.\
+
+\f3\b \
+Sviluppi futuri\
+\
+
+\f2\b0 Alcuni degli sviluppi futuri relativi al progetto realizzato sono innanzitutto l\'92implementazione della parte probabilistica nell\'92applicazione web reale e l\'92aggiunta del controllo sull\'92orario della gara. Ad esempio se quest\'92ultima si svolge prima delle ore 18:00 \'e8 meno probabile che un arbitro possa accettare la designazione se \'e8 un lavoratore.
+\f3\b \
+\
+Bibliografia\
+\
+
+\f2\b0 Documentazione Mathematica: https://reference.wolfram.com/language/\
+Forum Mathematica: https://community.wolfram.com\
+Stack Overflow: https://stackoverflow.com\
+}
